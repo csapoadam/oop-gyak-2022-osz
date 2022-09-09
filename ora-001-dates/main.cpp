@@ -6,7 +6,7 @@ class Date {
 	int _day, _month, _year;
 	static std::string monthNames[13];
 	static bool _is_day_admissible(int day, int month, int year) {
-		if (month < 13 && month > 0) {
+		if (_is_month_admissible(month)) {
 			// 30-napos honapok
 			if (month == 4 || month == 6 || month == 9 || month == 11) {
 				//if (day > 0 && day < 31) return true;
@@ -21,21 +21,12 @@ class Date {
 		}
 		return false;
 	}
+	static bool _is_month_admissible(int month) {
+		return (month < 13 && month > 0);
+	}
 public:
 	Date(int day, int month, int year) {
-		if (month < 1 || month > 12) {
-			// mukodik de nem olyan jo mert a hivo fel
-			// sosem ertesul rola h ez egy rossz datum:
-			//_month = 1;	// ilyen honap nincs, ezert default ertek
-			
-			// masik opcio: kivetel eldobasa, de ez
-			// halado tema:
-			// throw std::exception("Hibas honap!");
-			_month = 0;
-		}
-		else {
-			_month = month;
-		}
+		_month = _is_month_admissible(month) ? month : 0;
 		_day = _is_day_admissible(day, month, year) ? day : 0;
 		_year = year;
 	}
