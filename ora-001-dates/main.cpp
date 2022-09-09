@@ -14,4 +14,7 @@ int main() {
 	feb_29_2024.print();
 	mar_31_2022.print();
 	apr_31_2022.print();
+	feb_29_2024.add_days(42); // APR 11, 2024
+	feb_29_2024.print(); // mar apr 11, 2024 kellene h legyen
+
 }

@@ -7,6 +7,28 @@ Date::Date(int day, int month, int year) {
 	_year = year;
 }
 
+void Date::add_days(int days) {
+	int daysLeft = days;
+	while (true) { // ameddig meg vannak napok, folytatjuk
+		int leftInMonth = _days_left_in_month(_day, _month, _year);
+		int newDaysLeft = daysLeft - leftInMonth;
+		if (newDaysLeft == 0) {
+			_day = _number_of_days_in_month(_month, _year);
+			return;
+		}
+		if (newDaysLeft < 0) {
+			_day = _day + daysLeft;
+			return;
+		}
+		// leptetni kell, mert tul sok nap van hatra!
+		daysLeft = newDaysLeft - 1;
+		_month = _month + 1 < 13 ? _month + 1 : 1;
+		_year = _month == 1 ? _year + 1 : _year;
+		_day = 1;
+
+	}
+}
+
 void Date::print() {
 	std::cout <<
 		monthNames[_month] << " " <<
@@ -42,4 +64,9 @@ bool Date::_is_day_admissible(int day, int month, int year) {
 
 bool Date::_is_month_admissible(int month) {
 	return (month < 13 && month > 0);
+}
+
+int Date::_days_left_in_month(int day, int month, int year) {
+	int totalDaysInMonth = _number_of_days_in_month(month, year);
+	return totalDaysInMonth - day;
 }
