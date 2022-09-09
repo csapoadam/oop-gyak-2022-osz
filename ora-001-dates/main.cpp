@@ -2,6 +2,7 @@
 
 class Date {
 	int _day, _month, _year;
+public:
 	Date(int day, int month, int year) {
 		_day = day;
 		_month = month;
