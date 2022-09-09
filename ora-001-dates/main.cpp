@@ -4,6 +4,11 @@
 
 class Date {
 	int _day, _month, _year;
+	std::string monthNames[12] = {
+		"JAN", "FEB", "MAR", "APR",
+		"MAY", "JUN", "JUL", "AUG",
+		"SEP", "OCT", "NOV", "DEC"
+	};
 public:
 	Date(int day, int month, int year) {
 		_day = day;
@@ -11,15 +16,13 @@ public:
 		_year = year;
 	}
 	void print() {
-		std::string monthNames[] = {
-			"JAN", "FEB", "MAR", "APR",
-			"MAY", "JUN", "JUL", "AUG",
-			"SEP", "OCT", "NOV", "DEC"
-		};
-		// pelda:
-		std::cout << monthNames[_month-1] << std::endl;
+		std::cout <<
+			monthNames[_month-1] << " " <<
+			_day << ", " <<
+			_year << std::endl;
 	}
 };
+
 
 int main() {
 	Date jan1_1970(1, 1, 1970);
