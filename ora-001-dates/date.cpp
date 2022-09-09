@@ -21,21 +21,23 @@ std::string Date::monthNames[] = {
 		"SEP", "OCT", "NOV", "DEC"
 };
 
-bool Date::_is_day_admissible(int day, int month, int year) {
-	if (_is_month_admissible(month)) {
-		// 30-napos honapok
-		if (month == 4 || month == 6 || month == 9 || month == 11) {
-			//if (day > 0 && day < 31) return true;
-			return (day > 0 && day < 31);
-		}
-		else if (month == 2) {
-			int finalDay = year % 4 == 0 ? 29 : 28;
-			return (day > 0 && day < finalDay + 1);
-		}
-		// ellenkezo esetben 31-napos a honap
-		return (day > 0 && day < 32);
+int Date::_number_of_days_in_month(int month, int year) {
+	if (month == 4 || month == 6 || month == 9 || month == 11) {
+		return 30;
 	}
-	return false;
+	if (month == 1 || month == 3 || month == 5 || month == 7
+		|| month == 8 || month == 10 || month == 12) {
+		return 31;
+	}
+	if (month == 2) {
+		return year % 4 == 0 ? 29 : 28;
+	}
+	return 0;
+}
+
+bool Date::_is_day_admissible(int day, int month, int year) {
+	// akkor is false, ha month nem admissible, mert _number_of...() 0-at ad vissza
+	return (day > 0 && day < 1 + _number_of_days_in_month(month, year));
 }
 
 bool Date::_is_month_admissible(int month) {
