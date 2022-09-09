@@ -4,11 +4,7 @@
 
 class Date {
 	int _day, _month, _year;
-	std::string monthNames[12] = {
-		"JAN", "FEB", "MAR", "APR",
-		"MAY", "JUN", "JUL", "AUG",
-		"SEP", "OCT", "NOV", "DEC"
-	};
+	static std::string monthNames[12];
 public:
 	Date(int day, int month, int year) {
 		_day = day;
@@ -23,6 +19,11 @@ public:
 	}
 };
 
+std::string Date::monthNames[] = {
+		"JAN", "FEB", "MAR", "APR",
+		"MAY", "JUN", "JUL", "AUG",
+		"SEP", "OCT", "NOV", "DEC"
+};
 
 int main() {
 	Date jan1_1970(1, 1, 1970);
