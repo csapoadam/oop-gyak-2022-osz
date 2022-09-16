@@ -9,7 +9,11 @@ Neptun::Hallgato::Hallgato(std::string nv, std::string nkod) {
  neptunkod = nkod;
 }
 
-void Neptun::Hallgato::print(const int numTabs) {
+std::string Neptun::Hallgato::getNeptunKod() {
+	return neptunkod;
+}
+
+void Neptun::Hallgato::print(int numTabs) {
 	for (int tabcnt = 0; tabcnt < numTabs; tabcnt++) {
 		std::cout << "\t";
 	}
