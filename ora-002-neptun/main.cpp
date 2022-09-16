@@ -1,5 +1,6 @@
 #include "hallgatoDb.h"
 #include "targyDb.h"
+#include "felvettTargyDb.h"
 
 using namespace Neptun; // nagy projekteknel nem javasolt
 // mivel baj, ha 2 nevterben is letezik u.az a tipus vagy fv
@@ -25,11 +26,11 @@ int main() {
 	// ez a kerdes sem a HallgatoDb-hez, sem a TargyDb-hez
 	// nem kapcsolodik kizarolagosan. Ezert legyen egy
 	// ezt a kapcsolatot menedzselo osztaly:
-	//FelvettTargyDb felvettTargyak;
-	//felvettTargyak.add("AX873U", "NGB1"); // hallgato, targy
-	//felvettTargyak.add("RBV23Q", "NGB1"); // hallgato, targy
-	//felvettTargyak.add("AABIK5", "NGB5"); // hallgato, targy
-	//felvettTargyak.printTargyakByHallgato("AX873U");
+	FelvettTargyDb felvettTargyak;
+	felvettTargyak.add("AX873U", "NGB1"); // hallgato, targy
+	felvettTargyak.add("RBV23Q", "NGB1"); // hallgato, targy
+	felvettTargyak.add("AABIK5", "NGB5"); // hallgato, targy
+	felvettTargyak.printTargyakByHallgato("AX873U");
 	//felvettTargyak.printHallgatokByTargy("NGB1");
 
 }
