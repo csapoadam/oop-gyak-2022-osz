@@ -1,20 +1,7 @@
 #include "hallgato.h"
 
-//#include <string>
-//#include <iostream>
-//
-//class Hallgato {
-//	std::string nev; // adatrejtes elve: adattagok jellemzoen privatak
-//	std::string neptunkod;
-//public:
-//	Hallgato(std::string neve, std::string neptunkodja) {
-//		nev = neve;
-//		neptunkod = neptunkodja;
-//	}
-//	void print() {
-//		std::cout << nev << " - " << neptunkod << std::endl;
-//	}
-//};
+using namespace Neptun; // nagy projekteknel nem javasolt
+// mivel baj, ha 2 nevterben is letezik u.az a tipus vagy fv
 
 int main() {
 	Hallgato kocsisb("Kocsis Balint", "RBV23Q");
