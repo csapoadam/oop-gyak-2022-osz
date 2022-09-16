@@ -14,6 +14,6 @@ void HallgatoDb::printDb() {
 		hallgatok[inx].print();
 	}*/
 	for (Hallgato h : hallgatok) { // igazabol referencia is lehetne, ld. majd kesobb
-		h.print();
+		h.print(1);
 	}
 }
