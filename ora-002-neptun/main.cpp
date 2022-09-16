@@ -28,6 +28,7 @@ int main() {
 	// ezt a kapcsolatot menedzselo osztaly:
 	FelvettTargyDb felvettTargyak;
 	felvettTargyak.add("AX873U", "NGB1"); // hallgato, targy
+	felvettTargyak.add("AX873U", "NGB5"); // hallgato, targy
 	felvettTargyak.add("RBV23Q", "NGB1"); // hallgato, targy
 	felvettTargyak.add("AABIK5", "NGB5"); // hallgato, targy
 	felvettTargyak.printTargyakByHallgato("AX873U");
