@@ -13,7 +13,7 @@ namespace Neptun {
 			std::string, std::vector<std::string>
 		> kurzusokToHallgatok;
 	public:
-		void add(std::string neptunkod, std::string kurzuskod);
-		void printTargyakByHallgato(std::string neptunkod);
+		void add(const std::string& neptunkod, const std::string& kurzuskod);
+		void printTargyakByHallgato(std::string neptunkod) const;
 	};
 }

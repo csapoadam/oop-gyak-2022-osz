@@ -8,7 +8,7 @@ namespace Neptun {
 		std::vector<Targy> targyak;
 	public:
 		TargyDb() {} // jelenleg nem szukseges, de sose baj
-		void add(std::string nev, std::string azonosito, int kreditszam);
-		void printDb();
+		void add(const std::string& nev, const std::string& azonosito, int kreditszam);
+		void printDb() const;
 	};
 }

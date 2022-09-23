@@ -3,7 +3,7 @@
 
 using namespace Neptun;
 
-void TargyDb::add(std::string nev, std::string azonosito, int kreditszam) {
+void TargyDb::add(const std::string& nev, const std::string& azonosito, int kreditszam) {
 	for (Targy t : targyak) {
 		if (t.getAzonosito() == azonosito) return;
 	}
@@ -11,7 +11,7 @@ void TargyDb::add(std::string nev, std::string azonosito, int kreditszam) {
 	targyak.push_back(Targy(nev, azonosito, kreditszam));
 }
 
-void TargyDb::printDb() {
+void TargyDb::printDb() const {
 	std::cout << "Az egyetem targyai (";
 	std::cout << targyak.size() << " targy):" << std::endl;
 	for (Targy t : targyak) { // igazabol referencia is lehetne, ld. majd kesobb

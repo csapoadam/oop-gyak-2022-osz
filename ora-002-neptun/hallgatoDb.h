@@ -8,7 +8,7 @@ namespace Neptun {
 		std::vector<Hallgato> hallgatok;
 	public:
 		HallgatoDb() {} // jelenleg nem szukseges, de sose baj
-		void add(std::string nev, std::string neptunkod);
-		void printDb();
+		void add(const std::string& nev, const std::string& neptunkod);
+		void printDb() const;
 	};
 }

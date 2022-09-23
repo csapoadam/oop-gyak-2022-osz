@@ -3,7 +3,7 @@
 
 using namespace Neptun;
 
-void HallgatoDb::add(std::string nev, std::string neptunkod) {
+void HallgatoDb::add(const std::string& nev, const std::string& neptunkod) {
 	for (Hallgato h : hallgatok) {
 		if (h.getNeptunKod() == neptunkod) return;
 	}
@@ -11,7 +11,7 @@ void HallgatoDb::add(std::string nev, std::string neptunkod) {
 	hallgatok.push_back(Hallgato(nev, neptunkod));
 }
 
-void HallgatoDb::printDb() {
+void HallgatoDb::printDb() const {
 	std::cout << "Az egyetem hallgatoi (";
 	std::cout << hallgatok.size() << " hallgato):" << std::endl;
 	for (Hallgato h : hallgatok) { // igazabol referencia is lehetne, ld. majd kesobb
