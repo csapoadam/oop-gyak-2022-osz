@@ -36,7 +36,7 @@ void FelvettTargyDb::add(const std::string& neptunkod, const std::string& kurzus
 }
 
 void FelvettTargyDb::printTargyakByHallgato
-	(const std::string& neptunkod) const
+	(const std::string& neptunkod, TargyDb& targyakDb) const
 {
 	if (!doesHallgatoExist(neptunkod)) {
 		std::cout << "bocsika, ez a hallgato nem letezik" << std::endl;
@@ -50,7 +50,8 @@ void FelvettTargyDb::printTargyakByHallgato
 	// index operator felulirasra is szolgal, az .at() olvasast jelent
 	//for (const std::string& kurzusAzonosito : hallgatokToKurzusok[neptunkod]) {
 	for (const std::string& kurzusAzonosito : hallgatokToKurzusok.at(neptunkod)) {
-		std::cout << "\tazonosito: " << kurzusAzonosito << std::endl;
+		//std::cout << "\tazonosito: " << kurzusAzonosito << std::endl;
+		targyakDb.printTargy(kurzusAzonosito, 1);
 	}
 }
 

@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 
+#include "targyDb.h"
+
 namespace Neptun {
 	class FelvettTargyDb {
 		std::map<
@@ -22,7 +24,10 @@ namespace Neptun {
 
 	public:
 		void add(const std::string& neptunkod, const std::string& kurzuskod);
-		void printTargyakByHallgato(const std::string& neptunkod) const;
+		void printTargyakByHallgato(
+			const std::string& neptunkod,
+			TargyDb& targyakDb
+		) const;
 		void printHallgatokByTargy(const std::string& targykod) const;
 	};
 }
