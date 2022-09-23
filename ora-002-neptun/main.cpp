@@ -6,6 +6,10 @@ using namespace Neptun; // nagy projekteknel nem javasolt
 // mivel baj, ha 2 nevterben is letezik u.az a tipus vagy fv
 
 int main() {
+	//Hallgato h("Valami Nev", "N3PK0D"); ahhoz h ez mukodjon
+	// const string& kell,  nem eleg string& mert az csak bal oldali
+	// ertek lehet!
+
 	HallgatoDb hallgatok;
 	hallgatok.add("Kocsis Balint", "RBV23Q");
 	hallgatok.add("Szabo Tibor", "QKX7R1");

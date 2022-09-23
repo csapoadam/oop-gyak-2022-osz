@@ -6,11 +6,11 @@ namespace Neptun {
 
 	class Hallgato {
 		std::string nev; // adatrejtes elve: adattagok jellemzoen privatak
-		std::string neptunkod;
+		const std::string neptunkod;
 	public:
-		Hallgato(std::string nev, std::string neptunkod);
-		std::string getNeptunKod();
-		void print(int numTabs);
+		Hallgato(const std::string& nev, const std::string& neptunkod);
+		std::string getNeptunKod() const;
+		void print(int numTabs) const;
 	};
 
 }

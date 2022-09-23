@@ -4,16 +4,17 @@
 // lehetne using namespace Neptun; is, es akkor nem kene
 // mindenhova odairni
 
-Neptun::Hallgato::Hallgato(std::string nv, std::string nkod) {
+Neptun::Hallgato::Hallgato(
+	const std::string& nv, const std::string& nkod
+) : neptunkod(nkod) {
  nev = nv;
- neptunkod = nkod;
 }
 
-std::string Neptun::Hallgato::getNeptunKod() {
+std::string Neptun::Hallgato::getNeptunKod() const {
 	return neptunkod;
 }
 
-void Neptun::Hallgato::print(int numTabs) {
+void Neptun::Hallgato::print(int numTabs) const {
 	for (int tabcnt = 0; tabcnt < numTabs; tabcnt++) {
 		std::cout << "\t";
 	}
