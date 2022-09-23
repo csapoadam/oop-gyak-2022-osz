@@ -30,14 +30,18 @@ int main() {
 	// ez a kerdes sem a HallgatoDb-hez, sem a TargyDb-hez
 	// nem kapcsolodik kizarolagosan. Ezert legyen egy
 	// ezt a kapcsolatot menedzselo osztaly:
-	FelvettTargyDb felvettTargyak;
+	
+	// mivel a db-k bovulhetnek, de maga a valtozo ugyanaz, ezert
+	// celszeru lenne a referenciakat mindjart a konstruktornak atadni
+	// ... igy nem kene minden egyes printXYZByABC() hivasnal atadni
+	FelvettTargyDb felvettTargyak(targyak, hallgatok);
 	felvettTargyak.add("AX873U", "NGB1"); // hallgato, targy
 	felvettTargyak.add("AX873U", "NGB5"); // hallgato, targy
 	felvettTargyak.add("RBV23Q", "NGB1"); // hallgato, targy
 	felvettTargyak.add("AABIK5", "NGB5"); // hallgato, targy
-	felvettTargyak.printTargyakByHallgato("AX873U", targyak); // feladat: a targyak nevei es neptun kodjai is szerepeljenek
+	felvettTargyak.printTargyakByHallgato("AX873U"); // feladat: a targyak nevei es neptun kodjai is szerepeljenek
 	felvettTargyak.printHallgatokByTargy("NGB1");
-	felvettTargyak.printTargyakByHallgato("XXX000", targyak); // nem letezo Neptun kod!
+	felvettTargyak.printTargyakByHallgato("XXX000"); // nem letezo Neptun kod!
 	felvettTargyak.printHallgatokByTargy("00000"); // nem letezo targykod
 
 }
