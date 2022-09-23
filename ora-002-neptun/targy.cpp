@@ -4,17 +4,20 @@
 // lehetne using namespace Neptun; is, es akkor nem kene
 // mindenhova odairni
 
-Neptun::Targy::Targy(std::string nv, std::string az, int krszam) {
+Neptun::Targy::Targy(
+	const std::string& nv,
+	const std::string& az,
+	int krszam
+) : azonosito(az) {
 	nev = nv;
-	azonosito = az;
 	kreditszam = krszam;
 }
 
-std::string Neptun::Targy::getAzonosito() {
+std::string Neptun::Targy::getAzonosito() const {
 	return azonosito;
 }
 
-void Neptun::Targy::print(int numTabs) {
+void Neptun::Targy::print(int numTabs) const {
 	for (int tabcnt = 0; tabcnt < numTabs; tabcnt++) {
 		std::cout << "\t";
 	}

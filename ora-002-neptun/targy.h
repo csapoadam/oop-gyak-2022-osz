@@ -6,12 +6,12 @@ namespace Neptun {
 
 	class Targy {
 		std::string nev; // adatrejtes elve: adattagok jellemzoen privatak
-		std::string azonosito;
+		const std::string azonosito;
 		int kreditszam;
 	public:
-		Targy(std::string nev, std::string azonosito, int kreditsz);
-		std::string getAzonosito();
-		void print(int numTabs);
+		Targy(const std::string& nev, const std::string& azonosito, int kreditsz);
+		std::string getAzonosito() const;
+		void print(int numTabs) const;
 	};
 
 }
