@@ -17,6 +17,8 @@ namespace Neptun {
 		// es meghivja (ugyanugy ahogy printHallgatokByTargy is)
 		bool doesTargyExist(const std::string&) const;
 		bool doesHallgatoExist(const std::string&) const;
+		void ensureTargyExists(const std::string&);
+		void ensureHallgatoExists(const std::string&);
 
 	public:
 		void add(const std::string& neptunkod, const std::string& kurzuskod);

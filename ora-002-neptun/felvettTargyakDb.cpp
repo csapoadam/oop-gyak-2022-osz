@@ -12,33 +12,27 @@ bool FelvettTargyDb::doesHallgatoExist(const std::string& neptunkod) const {
 		hallgatokToKurzusok.end();
 }
 
-
-void FelvettTargyDb::add(const std::string& neptunkod, const std::string& kurzuskod) {
-	if (hallgatokToKurzusok.find(neptunkod) ==
-		hallgatokToKurzusok.end()) { // ha nincs benne, akkor az end() iteratort kapjuk meg
-		
+void FelvettTargyDb::ensureHallgatoExists(const std::string& neptunkod) {
+	if (!doesHallgatoExist(neptunkod)) { // ha nincs benne, akkor az end() iteratort kapjuk meg
 		std::vector<std::string> kurzusok;
-		kurzusok.push_back(kurzuskod);
 		hallgatokToKurzusok[neptunkod] = kurzusok;
 	}
-	else {
-		// todo: mi tortenik hogy mar felvette azt a kurzust?
-		// (most nem foglalkozunk ezzel)
-		hallgatokToKurzusok[neptunkod].push_back(kurzuskod);
-	}
+}
 
-	if (kurzusokToHallgatok.find(kurzuskod) ==
-		kurzusokToHallgatok.end()) { // ha nincs benne, akkor az end() iteratort kapjuk meg
-
+void FelvettTargyDb::ensureTargyExists(const std::string& targykod) {
+	if (!doesTargyExist(targykod)) { // ha nincs benne, akkor az end() iteratort kapjuk meg
 		std::vector<std::string> hallgatok;
-		hallgatok.push_back(neptunkod);
-		kurzusokToHallgatok[kurzuskod] = hallgatok;
+		kurzusokToHallgatok[targykod] = hallgatok;
 	}
-	else {
-		// todo: mi tortenik hogy mar felvette azt a kurzust?
-		// (most nem foglalkozunk ezzel)
-		kurzusokToHallgatok[kurzuskod].push_back(neptunkod);
-	}
+}
+
+
+void FelvettTargyDb::add(const std::string& neptunkod, const std::string& kurzuskod) {
+	ensureHallgatoExists(neptunkod);
+	hallgatokToKurzusok[neptunkod].push_back(kurzuskod);
+
+	ensureTargyExists(kurzuskod);
+	kurzusokToHallgatok[kurzuskod].push_back(neptunkod);
 }
 
 void FelvettTargyDb::printTargyakByHallgato
