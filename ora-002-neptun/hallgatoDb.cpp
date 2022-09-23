@@ -11,6 +11,14 @@ void HallgatoDb::add(const std::string& nev, const std::string& neptunkod) {
 	hallgatok.push_back(Hallgato(nev, neptunkod));
 }
 
+void HallgatoDb::printHallgato(const std::string& neptunkod, int numTabs) const {
+	for (Hallgato h : hallgatok) { // igazabol referencia is lehetne, ld. majd kesobb
+		if (h.getNeptunKod() == neptunkod) {
+			h.print(numTabs);
+		}
+	}
+}
+
 void HallgatoDb::printDb() const {
 	std::cout << "Az egyetem hallgatoi (";
 	std::cout << hallgatok.size() << " hallgato):" << std::endl;

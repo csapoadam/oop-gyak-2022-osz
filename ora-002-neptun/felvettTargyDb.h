@@ -5,9 +5,13 @@
 #include <string>
 
 #include "targyDb.h"
+#include "hallgatoDb.h"
 
 namespace Neptun {
 	class FelvettTargyDb {
+		const TargyDb& targyakDb;
+		const HallgatoDb& hallgatokDb;
+
 		std::map<
 			std::string, std::vector<std::string>
 		> hallgatokToKurzusok;
@@ -23,11 +27,9 @@ namespace Neptun {
 		void ensureHallgatoExists(const std::string&);
 
 	public:
+		FelvettTargyDb(TargyDb&, HallgatoDb&);
 		void add(const std::string& neptunkod, const std::string& kurzuskod);
-		void printTargyakByHallgato(
-			const std::string& neptunkod,
-			TargyDb& targyakDb
-		) const;
+		void printTargyakByHallgato(const std::string& neptunkod) const;
 		void printHallgatokByTargy(const std::string& targykod) const;
 	};
 }

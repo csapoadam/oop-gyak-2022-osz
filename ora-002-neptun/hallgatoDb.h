@@ -9,6 +9,7 @@ namespace Neptun {
 	public:
 		HallgatoDb() {} // jelenleg nem szukseges, de sose baj
 		void add(const std::string& nev, const std::string& neptunkod);
+		void printHallgato(const std::string& neptunkod, int numTabs) const;
 		void printDb() const;
 	};
 }

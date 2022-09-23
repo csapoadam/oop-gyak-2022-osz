@@ -2,6 +2,10 @@
 #include <iostream>
 using namespace Neptun;
 
+FelvettTargyDb::FelvettTargyDb(TargyDb& tk, HallgatoDb& hk) :
+	targyakDb(tk), hallgatokDb(hk)
+{}
+
 bool FelvettTargyDb::doesTargyExist(const std::string& targykod) const {
 	return kurzusokToHallgatok.find(targykod) !=
 		kurzusokToHallgatok.end();
@@ -35,8 +39,7 @@ void FelvettTargyDb::add(const std::string& neptunkod, const std::string& kurzus
 	kurzusokToHallgatok[kurzuskod].push_back(neptunkod);
 }
 
-void FelvettTargyDb::printTargyakByHallgato
-	(const std::string& neptunkod, TargyDb& targyakDb) const
+void FelvettTargyDb::printTargyakByHallgato(const std::string& neptunkod) const
 {
 	if (!doesHallgatoExist(neptunkod)) {
 		std::cout << "bocsika, ez a hallgato nem letezik" << std::endl;
@@ -69,6 +72,7 @@ void FelvettTargyDb::printHallgatokByTargy
 	std::cout << std::endl;
 	// index operator felulirasra is szolgal, az .at() olvasast jelent
 	for (const std::string& neptunKod : kurzusokToHallgatok.at(targykod)) {
-		std::cout << "\tneptun: " << neptunKod << std::endl;
+		//std::cout << "\tneptun: " << neptunKod << std::endl;
+		hallgatokDb.printHallgato(neptunKod, 1);
 	}
 }

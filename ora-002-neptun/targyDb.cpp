@@ -11,7 +11,7 @@ void TargyDb::add(const std::string& nev, const std::string& azonosito, int kred
 	targyak.push_back(Targy(nev, azonosito, kreditszam));
 }
 
-void TargyDb::printTargy(const std::string& azonosito, int numTabs) {
+void TargyDb::printTargy(const std::string& azonosito, int numTabs) const {
 	for (Targy t : targyak) { // igazabol referencia is lehetne, ld. majd kesobb
 		if (t.getAzonosito() == azonosito) {
 			t.print(numTabs);
