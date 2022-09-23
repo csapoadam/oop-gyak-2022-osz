@@ -31,5 +31,8 @@ namespace Neptun {
 		void add(const std::string& neptunkod, const std::string& kurzuskod);
 		void printTargyakByHallgato(const std::string& neptunkod) const;
 		void printHallgatokByTargy(const std::string& targykod) const;
+		// Ez pedig majd hozzaadja a kreditszamot a hallgatohoz,
+		// es torli a felvett targyak db-jebol
+		void completeTargy(const std::string& neptunkod, const std::string& targykod);
 	};
 }
