@@ -9,6 +9,7 @@ namespace Neptun {
 	public:
 		TargyDb() {} // jelenleg nem szukseges, de sose baj
 		void add(const std::string& nev, const std::string& azonosito, int kreditszam);
+		void printTargy(const std::string& azonosito); // TODO!
 		void printDb() const;
 	};
 }

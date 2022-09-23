@@ -35,7 +35,7 @@ int main() {
 	felvettTargyak.add("AX873U", "NGB5"); // hallgato, targy
 	felvettTargyak.add("RBV23Q", "NGB1"); // hallgato, targy
 	felvettTargyak.add("AABIK5", "NGB5"); // hallgato, targy
-	felvettTargyak.printTargyakByHallgato("AX873U");
+	felvettTargyak.printTargyakByHallgato("AX873U", targyak); // feladat: a targyak nevei es neptun kodjai is szerepeljenek
 	felvettTargyak.printHallgatokByTargy("NGB1");
 	felvettTargyak.printTargyakByHallgato("XXX000"); // nem letezo Neptun kod!
 	felvettTargyak.printHallgatokByTargy("00000"); // nem letezo targykod
