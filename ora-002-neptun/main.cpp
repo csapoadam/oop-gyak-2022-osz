@@ -36,6 +36,8 @@ int main() {
 	felvettTargyak.add("RBV23Q", "NGB1"); // hallgato, targy
 	felvettTargyak.add("AABIK5", "NGB5"); // hallgato, targy
 	felvettTargyak.printTargyakByHallgato("AX873U");
-	//felvettTargyak.printHallgatokByTargy("NGB1");
+	felvettTargyak.printHallgatokByTargy("NGB1");
+	felvettTargyak.printTargyakByHallgato("XXX000"); // nem letezo Neptun kod!
+	felvettTargyak.printHallgatokByTargy("00000"); // nem letezo targykod
 
 }

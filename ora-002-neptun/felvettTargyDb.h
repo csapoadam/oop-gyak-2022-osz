@@ -14,6 +14,7 @@ namespace Neptun {
 		> kurzusokToHallgatok;
 	public:
 		void add(const std::string& neptunkod, const std::string& kurzuskod);
-		void printTargyakByHallgato(std::string neptunkod) const;
+		void printTargyakByHallgato(const std::string& neptunkod) const;
+		void printHallgatokByTargy(const std::string& targykod) const;
 	};
 }
