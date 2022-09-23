@@ -12,6 +12,12 @@ namespace Neptun {
 		std::map<
 			std::string, std::vector<std::string>
 		> kurzusokToHallgatok;
+
+		// const-nak kell lenniuk, mert printTargyakByHallgato() is const
+		// es meghivja (ugyanugy ahogy printHallgatokByTargy is)
+		bool doesTargyExist(const std::string&) const;
+		bool doesHallgatoExist(const std::string&) const;
+
 	public:
 		void add(const std::string& neptunkod, const std::string& kurzuskod);
 		void printTargyakByHallgato(const std::string& neptunkod) const;
