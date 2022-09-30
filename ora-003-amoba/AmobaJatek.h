@@ -4,9 +4,10 @@
 class AmobaJatek {
 	const int numRows;
 	const int numCols;
+	const int numToWin;
 	AmobaTabla table;
 public:
-	AmobaJatek(int nRows, int nCols) :
+	AmobaJatek(int nRows, int nCols, int nToWin) :
 		numRows(nRows), numCols(nCols), table(nRows, nCols) {}
 
 	void play() {
