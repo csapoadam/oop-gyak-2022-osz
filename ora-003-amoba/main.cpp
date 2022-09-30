@@ -1,4 +1,4 @@
-
+#include "AmobaTabla.h"
 
 
 
@@ -14,4 +14,6 @@ int main() {
 	table.lepes(1, 'B', 23); // 23. oszlop nincs
 
 	table.lepes(1, 'B', 2); // OK
+
+	table.draw();
 }
