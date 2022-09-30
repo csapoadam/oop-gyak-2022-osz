@@ -8,11 +8,7 @@ class AmobaTabla {
 	// kulso vektor annyi vektort tartalmaz, ahany SOR van
 	// belso vektorok annyi char-t tartalmaznak, ahany OSZLOP van
 	std::vector< std::vector<char> > table; // lehetne dinamikusan allokalt mem.-mel is
-	int previousPlayer;
 
-	int charToRowNumber(char ch) {
-		return (int)ch - 65;
-	}
 public:
 	AmobaTabla(int rows, int cols) :
 		numRows(rows), numCols(cols) {
@@ -23,42 +19,35 @@ public:
 			}
 			table.push_back(rowvec);
 		}
-		previousPlayer = -1;
 	}
 
-	void lepes(int player, char row, int col) {
-		if (
-			player == previousPlayer ||
-			player < 0 ||
-			player > 1
-		) {
-			// az elobb is ugyano lepett vagy nem definialt player
-			return;
+	bool step(int player, int row, int col) {
+		if (table[row][col] == '.') {
+			// lepes vegbe mehet!
+			table[row][col] = player == 0 ? 'X' : 'O';
+			return true;
 		}
-		int rowAsInt = charToRowNumber(row);
-
-		if (rowAsInt > -1 && rowAsInt < numRows) {
-			if (col > -1 && col < numCols) {
-				if (table[rowAsInt][col] == '.') {
-					// lepes vegbe mehet!
-					table[rowAsInt][col] =
-						player == 0 ? 'X' : 'O';
-					
-					previousPlayer = player;
-				}
-			}
+		else {
+			return false;
 		}
 	}
 
 	void draw() {
 		// fejlec
+		std::cout << " ";
+		for (int i = 0; i < numCols; i++) {
+			std::cout << " " << i + 1;
+		}
+		std::cout << std::endl << " ";
+
 		for (int i = 0; i < 2 * numCols + 1; i++) {
 			std::cout << "-";
 		}
 		std::cout << std::endl;
 
 		for (int row = 0; row < numRows; row++) {
-			std::cout << "|";
+			int rowAscii = row + 65;
+			std::cout << (char)rowAscii << "|";
 			for (int col = 0; col < numCols; col++) {
 				std::cout << table[row][col] << "|";
 			}
@@ -66,6 +55,7 @@ public:
 		}
 
 		//lablec
+		std::cout << " ";
 		for (int i = 0; i < 2 * numCols + 1; i++) {
 			std::cout << "-";
 		}
