@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <iostream>
 
 class AmobaTabla {
 	const int numRows;
@@ -35,8 +36,9 @@ public:
 			return;
 		}
 		int rowAsInt = charToRowNumber(row);
-		if (rowAsInt > 0 && rowAsInt < numRows) {
-			if (col > 0 && col < numCols) {
+
+		if (rowAsInt > -1 && rowAsInt < numRows) {
+			if (col > -1 && col < numCols) {
 				if (table[rowAsInt][col] == '.') {
 					// lepes vegbe mehet!
 					table[rowAsInt][col] =
@@ -46,5 +48,27 @@ public:
 				}
 			}
 		}
+	}
+
+	void draw() {
+		// fejlec
+		for (int i = 0; i < 2 * numCols + 1; i++) {
+			std::cout << "-";
+		}
+		std::cout << std::endl;
+
+		for (int row = 0; row < numRows; row++) {
+			std::cout << "|";
+			for (int col = 0; col < numCols; col++) {
+				std::cout << table[row][col] << "|";
+			}
+			std::cout << std::endl;
+		}
+
+		//lablec
+		for (int i = 0; i < 2 * numCols + 1; i++) {
+			std::cout << "-";
+		}
+		std::cout << std::endl;
 	}
 };
