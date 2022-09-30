@@ -21,6 +21,17 @@ public:
 		}
 	}
 
+	bool isFull() {
+		for (int row = 0; row < numRows; row++) {
+			for (int col = 0; col < numCols; col++) {
+				if (table[row][col] == '.') {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 	bool step(int player, int row, int col) {
 		if (table[row][col] == '.') {
 			// lepes vegbe mehet!
@@ -30,6 +41,12 @@ public:
 		else {
 			return false;
 		}
+	}
+
+	int getPlayerAt(int row, int col) {
+		if (table[row][col] == 'X') { return 0; }
+		if (table[row][col] == 'O') { return 1; }
+		return -1;
 	}
 
 	void draw() {
