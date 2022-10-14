@@ -1,15 +1,9 @@
 #pragma once
+#include "gps.h"
+#include "printUtils.h"
 #include <iostream>
 
-void printIndents(int indent) {
-	for (int ind = 0; ind < indent; ind++) {
-		std::cout << "\t";
-	}
-}
 
-class GPSKoordinata {
-
-};
 
 class GyalogosEgyseg {
 	int hanyFo;
@@ -20,8 +14,7 @@ public:
 	void print(int indent) {
 		printIndents(indent);
 		std::cout << hanyFo << " fobol allo csapat" << std::endl;
-		printIndents(indent);
-		gps.print();
+		gps.print(indent);
 	}
 };
 
@@ -35,7 +28,6 @@ public:
 	void print(int indent) {
 		printIndents(indent);
 		std::cout << "maximum magassag: " << maxMagassag << std::endl;
-		printIndents(indent);
-		gps.print();
+		gps.print(indent);
 	}
 };
