@@ -5,45 +5,39 @@
 
 class GyalogosEgyseg {
 	int hanyFo;
-	GPSKoordinata gps;
 public:
-	GyalogosEgyseg(int hanyFo, double gpslat, double gpslon):
-		hanyFo(hanyFo), gps(gpslat, gpslon) {}
+	GyalogosEgyseg(int hanyFo):
+		hanyFo(hanyFo) {}
 	void print(int indent) {
 		printIndents(indent);
 		std::cout << hanyFo << " fobol allo csapat" << std::endl;
-		gps.print(indent);
 	}
 };
 
 class LegiEgyseg {
 	int maxMagassag;
-	GPSKoordinata gps;
 public:
-	LegiEgyseg(int maxmagassag, double gpslat, double gpslon):
-		maxMagassag(maxmagassag), gps(gpslat, gpslon)
+	LegiEgyseg(int maxmagassag):
+		maxMagassag(maxmagassag)
 	{}
 	void print(int indent) {
 		printIndents(indent);
 		std::cout << "maximum magassag: " << maxMagassag << std::endl;
-		gps.print(indent);
 	}
 };
 
 class HajosEgyseg {
 	int legenyseg;
 	double hatotavolsag;
-	GPSKoordinata gps;
 public:
-	HajosEgyseg(int legenyseg, double hatotav, double gpslat, double gpslon) :
-		legenyseg(legenyseg), hatotavolsag(hatotav), gps(gpslat, gpslon)
+	HajosEgyseg(int legenyseg, double hatotav) :
+		legenyseg(legenyseg), hatotavolsag(hatotav)
 	{}
 	void print(int indent) {
 		printIndents(indent);
 		std::cout << legenyseg << " fobol allo hajo" << std::endl;
 		printIndents(indent);
 		std::cout << "hatotavolsag: " << hatotavolsag << std::endl;
-		gps.print(indent);
 	}
 };
 
@@ -51,6 +45,7 @@ class Egyseg {
 	GyalogosEgyseg* gep;
 	LegiEgyseg* lep;
 	HajosEgyseg* hep;
+	GPSKoordinata gps;
 public:
 	~Egyseg() {
 		if (gep) delete gep;
@@ -59,7 +54,7 @@ public:
 	}
 	// gyalogos es legi:
 	Egyseg(int egysegTipus, int hanyFoVagyMagassag, double lat, double lon) :
-		gep(nullptr), lep(nullptr), hep(nullptr)
+		gep(nullptr), lep(nullptr), hep(nullptr), gps(lat, lon)
 	{
 		if (egysegTipus == 0) {
 			// gyalogos
@@ -68,20 +63,20 @@ public:
 			//GyalogosEgyseg g(hanyFoVagyMagassag, lat, lon); //...
 			//gep = &g;
 			// helyette:
-			gep = new GyalogosEgyseg(hanyFoVagyMagassag, lat, lon);
+			gep = new GyalogosEgyseg(hanyFoVagyMagassag);
 		}
 		else if (egysegTipus == 1) {
 			// legi egyseg
-			lep = new LegiEgyseg(hanyFoVagyMagassag, lat, lon);
+			lep = new LegiEgyseg(hanyFoVagyMagassag);
 		}
 	}
 	// hajos:
 	Egyseg(int egysegTipus, int legenyseg, double hatotav, double lat, double lon) :
-		gep(nullptr), lep(nullptr), hep(nullptr)
+		gep(nullptr), lep(nullptr), hep(nullptr), gps(lat, lon)
 	{
 		if (egysegTipus == 2) {
 			// hajos egyseg
-			hep = new HajosEgyseg(legenyseg, hatotav, lat, lon);
+			hep = new HajosEgyseg(legenyseg, hatotav);
 		}
 	}
 
@@ -89,14 +84,17 @@ public:
 		if (gep != nullptr) {
 			std::cout << "Gyalogos egyseg: " << std::endl;
 			gep->print(1);
+			gps.print(1);
 		}
 		if (lep != nullptr) {
 			std::cout << "Legi egyseg: " << std::endl;
 			lep->print(1);
+			gps.print(1);
 		}
 		if (hep != nullptr) {
 			std::cout << "Hajos egyseg: " << std::endl;
 			hep->print(1);
+			gps.print(1);
 		}
 	}
 };
