@@ -3,8 +3,6 @@
 #include "printUtils.h"
 #include <iostream>
 
-
-
 class GyalogosEgyseg {
 	int hanyFo;
 	GPSKoordinata gps;
@@ -28,6 +26,23 @@ public:
 	void print(int indent) {
 		printIndents(indent);
 		std::cout << "maximum magassag: " << maxMagassag << std::endl;
+		gps.print(indent);
+	}
+};
+
+class HajosEgyseg {
+	int legenyseg;
+	double hatotavolsag;
+	GPSKoordinata gps;
+public:
+	HajosEgyseg(int legenyseg, double hatotav, double gpslat, double gpslon) :
+		legenyseg(legenyseg), hatotavolsag(hatotav), gps(gpslat, gpslon)
+	{}
+	void print(int indent) {
+		printIndents(indent);
+		std::cout << legenyseg << " fobol allo hajo" << std::endl;
+		printIndents(indent);
+		std::cout << "hatotavolsag: " << hatotavolsag << std::endl;
 		gps.print(indent);
 	}
 };
