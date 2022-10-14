@@ -5,7 +5,7 @@
 class GPSKoordinata {
 	double latitude, longitude;
 public:
-	GPSKoordinata(int lat, int lon) :
+	GPSKoordinata(double lat, double lon) :
 		latitude(lat), longitude(lon) {}
 	void print(int indent) {
 		printIndents(indent);
