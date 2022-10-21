@@ -27,9 +27,9 @@ int main() {
 	//// ".BB"
 	//// ".BC"
 	
-	//graph.printBFS(); //szelessegi kereses: Breadth-First Search
+	graph.printBFS(); //szelessegi kereses: Breadth-First Search
 	//// "root", ".A", ".B", ".AA", ".AB", ".BA", ".BB", ".BC"
 
-	//graph.printDFS(); // melysegi kereses: Depth-First Search
+	graph.printDFS(); // melysegi kereses: Depth-First Search
 	//// "root", ".A", ".AA", ".AB", ".B", ".BA", ".BB", ".BC"
 }
