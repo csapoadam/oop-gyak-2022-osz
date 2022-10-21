@@ -32,20 +32,20 @@ public:
 class DirectedGraph {
 	std::vector<GraphNode> nodes;
 public:
-	DirectedGraph(const std::string& rootName) {
-		nodes.push_back(GraphNode(rootName));
+	DirectedGraph(const std::string& rootId) {
+		nodes.push_back(GraphNode(rootId));
 	}
 	void addChild(
-		const std::string& parentName,
-		const std::string& childName) {
+		const std::string& parentId,
+		const std::string& childId) {
 
 		bool wasParentFound = false;
 
 		// referenciat kell lekerni, kulonben MASOLAT lesz a node
 		// igy a masolathoz adnank hozza a gyermeket
 		for (GraphNode& node : nodes) {
-			if (node.getId() == parentName) {
-				node.addChild(GraphNode(childName));
+			if (node.getId() == parentId) {
+				node.addChild(GraphNode(childId));
 				wasParentFound = true;
 			}
 		}
@@ -53,7 +53,7 @@ public:
 		// mikozben iteralunk a nodes vektoron, nem szabad modositani!
 		// (ki tudja, hogyan dobja el kozben az agyat a runtime
 		if (wasParentFound)
-			nodes.push_back(GraphNode(childName));
+			nodes.push_back(GraphNode(childId));
 	
 	}
 	void printNodes() {
