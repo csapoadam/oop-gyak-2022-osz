@@ -21,6 +21,11 @@ public:
 	// const ref, hogy ne lehessen modositani: .getId() = "hahhaha"
 	const std::string& getId() { return id; }
 	void addChild(GraphNode ch) { children.push_back(ch); }
+	void printChildren() {
+		for (GraphNode child : children) {
+			std::cout << ", " << child.getId();
+		}
+	}
 };
 
 
@@ -36,7 +41,9 @@ public:
 
 		bool wasParentFound = false;
 
-		for (GraphNode node : nodes) {
+		// referenciat kell lekerni, kulonben MASOLAT lesz a node
+		// igy a masolathoz adnank hozza a gyermeket
+		for (GraphNode& node : nodes) {
 			if (node.getId() == parentName) {
 				node.addChild(GraphNode(childName));
 				wasParentFound = true;
@@ -60,6 +67,17 @@ public:
 			else {
 				std::cout << ", " << node.getId();
 			}
+		}
+		std::cout << std::endl;
+	}
+
+	void printNodesWithChildren() {
+		std::cout << "Nodes in graph (with children): " << std::endl;
+		for (GraphNode node : nodes) {
+			std::cout << node.getId();
+			// most a gyermekeit is kiiratjuk, ha van:
+			node.printChildren();
+			std::cout << std::endl;
 		}
 		std::cout << std::endl;
 	}
