@@ -17,7 +17,7 @@ int main() {
 	graph.printNodes(); // hozzaadas sorrendjeben menjen...
 	//// "root", ".A", ".B", ".BA", ".AA", ".AB", ".BB", ".BC"
 
-	graph.printNodesWithChildren; // hozzaadas sorrendjeben gyerekekkel egyutt
+	//graph.printNodesWithChildren; // hozzaadas sorrendjeben gyerekekkel egyutt
 	//// "root", ".A", ".B"
 	//// ".A", ".AA", ".AB"
 	//// ".B", ".BA", ".BB", ".BC"
