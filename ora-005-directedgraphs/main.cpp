@@ -1,4 +1,4 @@
-
+#include "graphs.h"
 
 
 int main() {
@@ -9,7 +9,7 @@ int main() {
 	graph.addChild(".A", ".AA");
 	graph.addChild(".A", ".AB");
 
-	graph.addChild(".B". ".BA");
+	graph.addChild(".B", ".BA");
 	graph.addChild(".B", ".BB");
 	graph.addChild(".B", ".BC");
 
