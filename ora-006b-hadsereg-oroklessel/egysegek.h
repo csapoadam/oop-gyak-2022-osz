@@ -3,44 +3,6 @@
 #include "printUtils.h"
 #include <iostream>
 
-class GyalogosEgyseg {
-	int hanyFo;
-public:
-	GyalogosEgyseg(int hanyFo):
-		hanyFo(hanyFo) {}
-	void print(int indent) {
-		printIndents(indent);
-		std::cout << hanyFo << " fobol allo csapat" << std::endl;
-	}
-};
-
-class LegiEgyseg {
-	int maxMagassag;
-public:
-	LegiEgyseg(int maxmagassag):
-		maxMagassag(maxmagassag)
-	{}
-	void print(int indent) {
-		printIndents(indent);
-		std::cout << "maximum magassag: " << maxMagassag << std::endl;
-	}
-};
-
-class HajosEgyseg {
-	int legenyseg;
-	double hatotavolsag;
-public:
-	HajosEgyseg(int legenyseg, double hatotav) :
-		legenyseg(legenyseg), hatotavolsag(hatotav)
-	{}
-	void print(int indent) {
-		printIndents(indent);
-		std::cout << legenyseg << " fobol allo hajo" << std::endl;
-		printIndents(indent);
-		std::cout << "hatotavolsag: " << hatotavolsag << std::endl;
-	}
-};
-
 class Egyseg {
 	GyalogosEgyseg* gep;
 	LegiEgyseg* lep;
@@ -96,5 +58,43 @@ public:
 			hep->print(1);
 			gps.print(1);
 		}
+	}
+};
+
+class GyalogosEgyseg : public Egyseg {
+	int hanyFo;
+public:
+	GyalogosEgyseg(int hanyFo, double lat, double lon):
+		hanyFo(hanyFo) {}
+	void print(int indent) {
+		printIndents(indent);
+		std::cout << hanyFo << " fobol allo csapat" << std::endl;
+	}
+};
+
+class LegiEgyseg : public Egyseg {
+	int maxMagassag;
+public:
+	LegiEgyseg(int maxmagassag, double lat, double lon):
+		maxMagassag(maxmagassag)
+	{}
+	void print(int indent) {
+		printIndents(indent);
+		std::cout << "maximum magassag: " << maxMagassag << std::endl;
+	}
+};
+
+class HajosEgyseg : public Egyseg {
+	int legenyseg;
+	double hatotavolsag;
+public:
+	HajosEgyseg(int legenyseg, double hatotav, double lat, double lon) :
+		legenyseg(legenyseg), hatotavolsag(hatotav)
+	{}
+	void print(int indent) {
+		printIndents(indent);
+		std::cout << legenyseg << " fobol allo hajo" << std::endl;
+		printIndents(indent);
+		std::cout << "hatotavolsag: " << hatotavolsag << std::endl;
 	}
 };
