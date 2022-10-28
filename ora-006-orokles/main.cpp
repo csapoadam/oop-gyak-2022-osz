@@ -19,11 +19,6 @@ int main() {
 		// Garmin eszkoz
 	}
 
-	// "sima" bal oldali referencia: string&
-	//	-> csak bal oldali ertekeket tud tarolni
-
-	// jobb oldali referencia: string&&
-
 	std::vector<Allat*> allatok;
 	std::string foltistr("Folti");
 
@@ -37,6 +32,12 @@ int main() {
 
 	for (Allat* allatp : allatok) {
 		allatp->print();
+		// Tegyuk fel, hogy a celom:
+		// Bundi kutya, szuletett 2018
+		// Folti kutya, szuletett 2013, hazorzo
+		// Cirmi cica, szuletett 2016
+		// vegyuk eszre, Kutya es Macska
+		// print() metodusa mas!
 	}
 
 
