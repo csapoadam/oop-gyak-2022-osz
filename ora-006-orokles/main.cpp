@@ -60,4 +60,17 @@ int main() {
 	// mert kp a fordito szamara is Kutya* tipusu pointer
 	delete kp;
 
+	std::vector<Jarmu*> jarmuvek;
+	jarmuvek.push_back(new Auto("Suzuki", "120LE"));
+	jarmuvek.push_back(new Repulo("Boeing", 980)); // 980km / ora
+
+	for (Jarmu* jp : jarmuvek) {
+		jp->print();
+		// Suzuki 120LE motorral
+		// Boeing 980 km/h sebesseggel
+	}
+	// ezt se felejtsuk el, mivel jarmuvek vektorban NEM
+	// stack valtozok hanem a heap-en allokalt valtozok
+	// cimei vannak:
+	for (Jarmu* jp : jarmuvek) delete jp;
 }
