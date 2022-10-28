@@ -1,6 +1,7 @@
 #include <vector>
 #include "eszkozok.h"
 #include "allatok.h"
+#include "jarmuvek.h"
 
 int main() {
 	Laptop l1("Asus", "i7", 16);
@@ -65,7 +66,7 @@ int main() {
 	jarmuvek.push_back(new Repulo("Boeing", 980)); // 980km / ora
 
 	for (Jarmu* jp : jarmuvek) {
-		jp->print();
+		jp->print(); // virtualis kell, hogy legyen! mivel elter a konkret jarmu tipus szerint
 		// Suzuki 120LE motorral
 		// Boeing 980 km/h sebesseggel
 	}
