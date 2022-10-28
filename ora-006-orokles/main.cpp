@@ -30,6 +30,11 @@ int main() {
 	allatok.push_back(&k2);
 	allatok.push_back(&m);
 
+	k.print();
+	k2.print();
+	m.print();
+	std::cout << "---" << std::endl;
+
 	for (Allat* allatp : allatok) {
 		allatp->print();
 		// Tegyuk fel, hogy a celom:
@@ -40,5 +45,19 @@ int main() {
 		// print() metodusa mas!
 	}
 
+	std::cout << "vege..." << std::endl;
+
+	// virtual magyarazata:
+	Allat* ap = new Kutya("Bloki", 2021, false);
+	// Ha print() virtualis, a Kutya print() metodusa hivodik meg
+	// ellenkezo esetben az Allat print() metodusa hivodik meg
+	// mert a fordito szerint ap egy Allat* tipusu pointer
+	ap->print();
+	delete ap;
+
+	Kutya* kp = new Kutya("Bloki2", 2021, false);
+	kp->print(); // itt mindenkeppen Kutya print()-je hivodik meg
+	// mert kp a fordito szamara is Kutya* tipusu pointer
+	delete kp;
 
 }
