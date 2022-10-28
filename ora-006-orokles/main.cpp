@@ -13,5 +13,8 @@ int main() {
 
 	for (Eszkoz* e : eszkozok) {
 		e->print();
+		// Asus eszkoz
+		// Samsung eszkoz
+		// Garmin eszkoz
 	}
 }
