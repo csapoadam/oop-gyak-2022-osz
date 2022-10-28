@@ -1,5 +1,6 @@
 #include <vector>
 #include "eszkozok.h"
+#include "allatok.h"
 
 int main() {
 	Laptop l1("Asus", "i7", 16);
@@ -17,4 +18,19 @@ int main() {
 		// Samsung eszkoz
 		// Garmin eszkoz
 	}
+
+	std::vector<Allat*> allatok;
+	Kutya k("Bundi", 2018, false); // hazorzo kutya-e
+	Kutya k2("Folti", 2013, true); // folti hazorzo
+	Macska m("Cirmi", 2016);
+	
+	allatok.push_back(&k);
+	allatok.push_back(&k2);
+	allatok.push_back(&m);
+
+	for (Allat* allatp : allatok) {
+		allatp->print();
+	}
+
+
 }
