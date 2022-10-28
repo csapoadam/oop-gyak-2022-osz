@@ -1,5 +1,5 @@
 #include <vector>
-
+#include "eszkozok.h"
 
 int main() {
 	Laptop l1("Asus", "i7", 16);
