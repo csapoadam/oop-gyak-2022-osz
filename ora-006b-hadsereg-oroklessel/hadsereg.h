@@ -19,8 +19,9 @@ public:
 		hajosegysegek.push_back(he);
 	}*/
 	void print() {
+		std::cout << "A hadsereg egysegei:" << std::endl;
 		for (Egyseg* e : egysegek) {
-			e->print();
+			e->print(1);
 		}
 		//std::cout << "Gyalogos egysegek:" << std::endl;
 		//for (GyalogosEgyseg* ge : gyalogosok) {
