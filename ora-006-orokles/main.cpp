@@ -19,7 +19,14 @@ int main() {
 		// Garmin eszkoz
 	}
 
+	// "sima" bal oldali referencia: string&
+	//	-> csak bal oldali ertekeket tud tarolni
+
+	// jobb oldali referencia: string&&
+
 	std::vector<Allat*> allatok;
+	std::string foltistr("Folti");
+
 	Kutya k("Bundi", 2018, false); // hazorzo kutya-e
 	Kutya k2("Folti", 2013, true); // folti hazorzo
 	Macska m("Cirmi", 2016);
