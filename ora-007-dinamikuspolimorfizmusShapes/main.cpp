@@ -1,4 +1,6 @@
 #include<type_traits>
+#include <iostream>
+#include "shapes.h"
 
 // Keszitse el a Point2D, Shape, Rectangle es Circle osztalyokat ugy,
 // hogy az alabbi kod forduljon és az elvárt kimenetet adja.
@@ -17,7 +19,7 @@
 // sqrt es pow a math.h konyvtarban megtalalhatoak, azaz: #include <math.h>
 
 #define SZINT_2 1
-#define SZINT_3 0
+#define SZINT_3 1
 #define SZINT_4 0
 #define SZINT_5 0
 
