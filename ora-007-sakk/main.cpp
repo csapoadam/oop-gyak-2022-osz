@@ -1,4 +1,4 @@
-
+#include "game.h"
 
 int main() {
 	ChessGame game;
@@ -13,4 +13,5 @@ int main() {
 		if (game.isFinished()) {
 			break;
 		}
+	}
 }
