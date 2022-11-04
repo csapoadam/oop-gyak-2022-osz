@@ -1,9 +1,13 @@
 #pragma once
 #include <math.h>
+#include <string>
 
 class Shape {
+	std::string name;
 public:
+	Shape (const std::string& nm) : name(nm) {}
 	virtual double area() = 0;
+	std::string getName() { return name; }
 };
 
 class Point2D {
@@ -19,8 +23,10 @@ class Rectangle : public Shape {
 	Point2D balf, bala, jobbf, jobba;
 public:
 	Rectangle(Point2D bf, Point2D ba, Point2D ja, Point2D jf) :
-		balf(bf), bala(ba), jobbf(jf), jobba(ja)
+		Shape("Teglalap"), balf(bf), bala(ba), jobbf(jf), jobba(ja)
 	{}
+	Rectangle(Rectangle& other) = delete;
+	Rectangle& operator=(Rectangle& other) = delete;
 	double area() override {
 		return balf.distance(bala) * bala.distance(jobba);
 	}
@@ -31,8 +37,10 @@ class Circle : public Shape {
 	int sugar;
 public:
 	Circle(Point2D center, int rad) :
-		kozepe(center), sugar(rad)
+		Shape("Kor"), kozepe(center), sugar(rad)
 	{}
+	Circle(Circle& other) = delete;
+	Circle& operator=(Circle& other) = delete;
 	double area() override {
 		return sugar * sugar * 3.14;
 	}
