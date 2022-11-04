@@ -21,7 +21,7 @@
 #define SZINT_2 1
 #define SZINT_3 1
 #define SZINT_4 1
-#define SZINT_5 0
+#define SZINT_5 1
 
 int main()
 {
@@ -36,8 +36,8 @@ int main()
 
     std::cout << "2-es jegyert:" << std::endl;
     std::cout << " " << "myPoint1 es myPoint2 kozotti tavolsag: " << myPoint1.distance(myPoint2) << std::endl;
-    std::cout << " " << "s1 " << s1->getName() << " terulete: " << s1->area() << std::endl;
-    std::cout << " " << "s2 " << s2->getName() << " terulete: " << s2->area() << std::endl;
+    std::cout << " " << "s1 " << s1->printType() << " terulete: " << s1->area() << std::endl;
+    std::cout << " " << "s2 " << s2->printType() << " terulete: " << s2->area() << std::endl;
 
 #if SZINT_3
 

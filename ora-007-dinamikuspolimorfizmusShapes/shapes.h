@@ -3,11 +3,14 @@
 #include <string>
 
 class Shape {
-	std::string name;
+	std::string type;
 public:
-	Shape (const std::string& nm) : name(nm) {}
+	Shape (const std::string& type) : type(type) {}
 	virtual double area() = 0;
-	std::string getName() { return name; }
+	std::string printType() { return type; }
+	bool isLargerThan(Shape* other) {
+		return area() > other->area();
+	}
 };
 
 class Point2D {
