@@ -6,8 +6,11 @@ class Shape {
 	std::string type;
 public:
 	Shape (const std::string& type) : type(type) {}
-	virtual double area() = 0;
 	std::string printType() { return type; }
+
+	virtual double area() = 0;
+	virtual int getSarkokSzama() = 0;
+	
 	bool isLargerThan(Shape* other) {
 		return area() > other->area();
 	}
@@ -30,6 +33,7 @@ public:
 	{}
 	Rectangle(Rectangle& other) = delete;
 	Rectangle& operator=(Rectangle& other) = delete;
+	int getSarkokSzama() { return 4; }
 	double area() override {
 		return balf.distance(bala) * bala.distance(jobba);
 	}
@@ -44,6 +48,7 @@ public:
 	{}
 	Circle(Circle& other) = delete;
 	Circle& operator=(Circle& other) = delete;
+	int getSarkokSzama() { return 0; }
 	double area() override {
 		return sugar * sugar * 3.14;
 	}

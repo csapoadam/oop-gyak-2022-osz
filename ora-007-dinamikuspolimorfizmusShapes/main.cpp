@@ -23,6 +23,10 @@
 #define SZINT_4 1
 #define SZINT_5 1
 
+int getSarkokSzama(Shape* shape) {
+    return shape->getSarkokSzama();
+}
+
 int main()
 {
 #if SZINT_2
