@@ -1,5 +1,10 @@
 ﻿#pragma once
 
+enum class Color {
+	black,
+	white
+};
+
 class ChessFigure {
 	std::string color;
 public:
