@@ -20,7 +20,7 @@ public:
 		row1.push_back(new Rook("white"));
 		row1.push_back(new Knight("white"));
 		row1.push_back(new Bishop("white"));
-		row1.push_back(new Queen("white"));
+		row1.push_back(new Queen("white")); // helyes a sorrend?
 		row1.push_back(new King("white"));
 		row1.push_back(new Bishop("white"));
 		row1.push_back(new Knight("white"));
@@ -64,10 +64,14 @@ public:
 		tableRows.push_back(row7);
 
 		std::vector<ChessFigure*> row8;
-		for (int i = 0; i < 8; i++) {
-			// ide majd mas kell, most legyenek gyalogok
-			row8.push_back(new Pawn("black"));
-		}
+		row8.push_back(new Rook("black"));
+		row8.push_back(new Knight("black"));
+		row8.push_back(new Bishop("black"));
+		row8.push_back(new Queen("black")); // helyes a sorrend?
+		row8.push_back(new King("black"));
+		row8.push_back(new Bishop("black"));
+		row8.push_back(new Knight("black"));
+		row8.push_back(new Rook("black"));
 		tableRows.push_back(row8); // push_back egy masolatot keszit
 		// ezert csak akkor hivjuk meg, ha mar tele van a sor!
 		// ennek mar nincs hatasa tableRows szempontjabol:
