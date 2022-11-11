@@ -4,6 +4,12 @@
 #include <vector>
 
 class ChessGame {
+	// Tobb teendo is van:
+	// 1.) Chess Figure es Pawn osztalyok vaza legyen meg, hogy forduljon
+	// 2.) Erdemes lenne a Tablahoz tartozo funkciokat egy
+	// ChessTable osztalyba kiszervezni. A ChessGame csak a jatszmaval foglalkozzon!
+	// 3.) Tomorebb kodot eredmenyez, ha a ChessTable osztalyban lenne ilyen hivas, hogy
+	// fillRow(), vagy defaultRow(szin), ...
 	bool isWhiteTurn;
 	std::vector < std::vector<ChessFigure*> > tableRows;
 public:

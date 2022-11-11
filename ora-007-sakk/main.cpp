@@ -3,13 +3,16 @@
 int main() {
 	ChessGame game;
 
-	while (true) {
-		game.draw();
+	game.draw();
 
+	while (true) {
 		bool success = false;
 		while (!success) {
 			success = game.getMove();
 		}
+
+		game.draw();
+
 		if (game.isFinished()) {
 			break;
 		}
