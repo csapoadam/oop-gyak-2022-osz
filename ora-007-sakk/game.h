@@ -17,10 +17,14 @@ class ChessGame {
 public:
 	ChessGame() : isWhiteTurn(true) {
 		std::vector<ChessFigure*> row1;
-		for (int i = 0; i < 8; i++) {
-			// ide majd mas kell, most legyenek gyalogok
-			row1.push_back(new Pawn("white"));
-		}
+		row1.push_back(new Rook("white"));
+		row1.push_back(new Knight("white"));
+		row1.push_back(new Bishop("white"));
+		row1.push_back(new Queen("white"));
+		row1.push_back(new King("white"));
+		row1.push_back(new Bishop("white"));
+		row1.push_back(new Knight("white"));
+		row1.push_back(new Rook("white"));
 		tableRows.push_back(row1);
 
 		std::vector<ChessFigure*> row2;
