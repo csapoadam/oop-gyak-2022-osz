@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+#include "figures.h"
+
 class ChessGame {
 	// Tobb teendo is van:
 	// 1.) Chess Figure es Pawn osztalyok vaza legyen meg, hogy forduljon
