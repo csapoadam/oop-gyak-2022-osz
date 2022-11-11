@@ -6,64 +6,64 @@ enum class Color {
 };
 
 class ChessFigure {
-	std::string color;
+	Color color;
 public:
-	ChessFigure(std::string color) : color(color) {}
+	ChessFigure(Color color) : color(color) {}
 	virtual ~ChessFigure() {}
-	std::string getColor() { return color; }
+	Color getColor() { return color; }
 	virtual std::string asString() = 0;
 };
 
 class Pawn : public ChessFigure {
 public:
-	Pawn(const std::string& color) : ChessFigure(color) {}
+	Pawn(Color color) : ChessFigure(color) {}
 	std::string asString() {
-		if (getColor() == "white") return "wP";
+		if (getColor() == Color::white) return "wP";
 		return "bP";
 	}
 };
 
 class Rook : public ChessFigure {
 public:
-	Rook(const std::string& color) : ChessFigure(color) {}
+	Rook(Color color) : ChessFigure(color) {}
 	std::string asString() {
-		if (getColor() == "white") return "wR";
+		if (getColor() == Color::white) return "wR";
 		return "bR";
 	}
 };
 
 class Knight : public ChessFigure {
 public:
-	Knight(const std::string& color) : ChessFigure(color) {}
+	Knight(Color color) : ChessFigure(color) {}
 	std::string asString() {
-		if (getColor() == "white") return "wN";
+		if (getColor() == Color::white) return "wN";
 		return "bN";
 	}
 };
 
 class Bishop : public ChessFigure {
 public:
-	Bishop(const std::string& color) : ChessFigure(color) {}
+	Bishop(Color color) : ChessFigure(color) {}
 	std::string asString() {
-		if (getColor() == "white") return "wB";
+		if (getColor() == Color::white) return "wB";
 		return "bB";
 	}
 };
 
 class Queen : public ChessFigure {
 public:
-	Queen(const std::string& color) : ChessFigure(color) {}
+	Queen(Color color) : ChessFigure(color) {}
 	std::string asString() {
-		if (getColor() == "white") return "wQ";
+		if (getColor() == Color::white) return "wQ";
 		return "bQ";
 	}
 };
 
 class King : public ChessFigure {
 public:
-	King(const std::string& color) : ChessFigure(color) {}
+	King(Color color) : ChessFigure(color) {}
 	std::string asString() {
-		if (getColor() == "white") return "wK";
+		if (getColor() == Color::white) return "wK";
 		return "bK";
 	}
 };
