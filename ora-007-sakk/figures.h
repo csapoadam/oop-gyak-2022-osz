@@ -4,6 +4,7 @@ class ChessFigure {
 	std::string color;
 public:
 	ChessFigure(std::string color) : color(color) {}
+	std::string asString() { return "   "; }
 };
 
 class Pawn : public ChessFigure {

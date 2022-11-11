@@ -17,38 +17,42 @@ class ChessGame {
 public:
 	ChessGame() : isWhiteTurn(true) {
 		std::vector<ChessFigure*> row1;
-		tableRows.push_back(row1);
 		for (int i = 0; i < 8; i++) {
 			// ide majd mas kell, most legyenek gyalogok
 			row1.push_back(new Pawn("white"));
 		}
+		tableRows.push_back(row1);
 
 		std::vector<ChessFigure*> row2;
 		for (int i = 0; i < 8; i++) {
 			row2.push_back(new Pawn("white"));
 		}
-
 		tableRows.push_back(row2);
+
 		std::vector<ChessFigure*> row3;
 		for (int i = 0; i < 8; i++) {
 			row3.push_back(nullptr);
 		}
 		tableRows.push_back(row3);
+
 		std::vector<ChessFigure*> row4;
 		for (int i = 0; i < 8; i++) {
 			row4.push_back(nullptr);
 		}
 		tableRows.push_back(row4);
+
 		std::vector<ChessFigure*> row5;
-		tableRows.push_back(row5);
 		for (int i = 0; i < 8; i++) {
 			row5.push_back(nullptr);
 		}
+		tableRows.push_back(row5);
+
 		std::vector<ChessFigure*> row6;
-		tableRows.push_back(row6);
 		for (int i = 0; i < 8; i++) {
-			row3.push_back(nullptr);
+			row6.push_back(nullptr);
 		}
+		tableRows.push_back(row6);
+
 		std::vector<ChessFigure*> row7;
 		for (int i = 0; i < 8; i++) {
 			row7.push_back(new Pawn("black"));
@@ -58,29 +62,28 @@ public:
 		std::vector<ChessFigure*> row8;
 		for (int i = 0; i < 8; i++) {
 			// ide majd mas kell, most legyenek gyalogok
-			row1.push_back(new Pawn("black"));
+			row8.push_back(new Pawn("black"));
 		}
 		tableRows.push_back(row8);
+
 	}
 	void draw() {
 		std::cout << "  | A | B | C | D | E | F | G | H |";
 		std::cout << std::endl;
-		std::cout << "8 |   |   |   |   |   |   |   |   |";
-		std::cout << std::endl;
-		std::cout << "7 |   |   |   |   |   |   |   |   |";
-		std::cout << std::endl;
-		std::cout << "6 |   |   |   |   |   |   |   |   |";
-		std::cout << std::endl;
-		std::cout << "5 |   |   |   |   |   |   |   |   |";
-		std::cout << std::endl;
-		std::cout << "4 |   |   |   |   |   |   |   |   |";
-		std::cout << std::endl;
-		std::cout << "3 |   |   |   |   |   |   |   |   |";
-		std::cout << std::endl;
-		std::cout << "2 |   |   |   |   |   |   |   |   |";
-		std::cout << std::endl;
-		std::cout << "1 |   |   |   |   |   |   |   |   |";
-		std::cout << std::endl;
+
+		for (int row = 7; row > -1; row--) {
+			std::cout << (row + 1) << " |";
+			for (int field = 0; field < 8; field++) {
+				ChessFigure* figPtr = tableRows[row][field];
+				if (!figPtr) { // ha tehat nullptr
+					std::cout << "   |";
+				}
+				else {
+					std::cout << figPtr->asString() << "|";
+				}
+			}
+			std::cout << std::endl;
+		}
 	}
 
 	bool getMove() {
