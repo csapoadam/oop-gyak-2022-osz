@@ -64,11 +64,29 @@ public:
 			// ide majd mas kell, most legyenek gyalogok
 			row8.push_back(new Pawn("black"));
 		}
-		tableRows.push_back(row8);
+		tableRows.push_back(row8); // push_back egy masolatot keszit
+		// ezert csak akkor hivjuk meg, ha mar tele van a sor!
+		// ennek mar nincs hatasa tableRows szempontjabol:
+		// row8.push_back("akarmi")
 
 	}
+	~ChessGame() {
+		for (int row = 0; row < 8; row++) {
+			for (int col = 0; col < 8; col++) {
+				if (tableRows[row][col] != nullptr) {
+					// ezen a mezon egy ChessFigure* van
+					// de ez lehet Pawn, ... (tobbfele figura)
+					// ezert kell a ChessFigure osztalyban virtualis destruktor
+					// hogy mindig a megfelelo destruktor hivodjon meg
+					delete tableRows[row][col];
+				}
+			}
+		}
+	}
 	void draw() {
-		std::cout << "  | A | B | C | D | E | F | G | H |";
+		std::cout << "  | A  | B  | C  | D  | E  | F  | G  | H  |";
+		std::cout << std::endl;
+		std::cout << "  -----------------------------------------";
 		std::cout << std::endl;
 
 		for (int row = 7; row > -1; row--) {
@@ -76,10 +94,10 @@ public:
 			for (int field = 0; field < 8; field++) {
 				ChessFigure* figPtr = tableRows[row][field];
 				if (!figPtr) { // ha tehat nullptr
-					std::cout << "   |";
+					std::cout << "    |";
 				}
 				else {
-					std::cout << figPtr->asString() << "|";
+					std::cout << " " << figPtr->asString() << " |";
 				}
 			}
 			std::cout << std::endl;
