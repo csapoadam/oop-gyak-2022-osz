@@ -46,4 +46,6 @@ public:
 	bool isFinished() {
 		return false;
 	}
+
+	void printResult() {}
 };

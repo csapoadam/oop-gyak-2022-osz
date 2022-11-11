@@ -3,18 +3,10 @@
 int main() {
 	ChessGame game;
 
-	game.draw();
-
-	while (true) {
-		bool success = false;
-		while (!success) {
-			success = game.getMove();
-		}
-
+	while (!game.isFinished()) {
 		game.draw();
-
-		if (game.isFinished()) {
-			break;
-		}
+		game.getMove(); // gondoskodjon getMove() a success / failure-rol!
 	}
+	game.draw(); // hadd lassuk az utolso allapotot!
+	game.printResult();
 }
