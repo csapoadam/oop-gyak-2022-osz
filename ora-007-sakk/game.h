@@ -25,22 +25,34 @@ public:
 		table.draw();
 	}
 
-	bool getMove() {
-		if (isWhiteTurn) {
-			std::cout << "Enter White move: ";
-			std::string move;
-			std::getline(std::cin, move);
-			std::cout << "  move is: " << move << std::endl;
-			isWhiteTurn = false;
+	void getMove() {
+		bool successfulMove = false;
+		while (!successfulMove) {
+			if (isWhiteTurn) {
+				std::cout << "Enter White move: ";
+				std::string move;
+				std::getline(std::cin, move);
+				// move lehet pl. PD4, vagy NF3...
+				std::cout << "  move is: " << move << std::endl;
+				if (table.isMoveAllowed(move)) {
+					table.performMove(move); // ez a metodus pontositast is kerhet
+					// ha ket figura is lephet ugyanoda...
+					successfulMove = true;
+					isWhiteTurn = false;
+				}
+			}
+			else {
+				std::cout << "Enter Black move: ";
+				std::string move;
+				std::getline(std::cin, move);
+				std::cout << "  move is: " << move << std::endl;
+				if (table.isMoveAllowed(move)) {
+					table.performMove(move);
+					successfulMove = true;
+					isWhiteTurn = true;
+				}
+			}
 		}
-		else {
-			std::cout << "Enter Black move: ";
-			std::string move;
-			std::getline(std::cin, move);
-			std::cout << "  move is: " << move << std::endl;
-			isWhiteTurn = true;
-		}
-		return true;
 	}
 
 	bool isFinished() {

@@ -73,4 +73,8 @@ public:
 			std::cout << std::endl;
 		}
 	}
+	bool isMoveAllowed(std::string& move) {
+		if (move == "ok") return true;
+		return false;
+	}
 };
