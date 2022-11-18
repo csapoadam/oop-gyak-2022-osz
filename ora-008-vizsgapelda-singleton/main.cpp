@@ -40,6 +40,20 @@ public:
     }
 };
 
+class Sinovac : public Oltas {
+    Sinovac(const std::string& name) : Oltas(name) {}
+    Sinovac(Sinovac& other) = delete;
+    Sinovac& operator=(Sinovac& other) = delete;
+public:
+    static Oltas* GetInstance() {
+        static Sinovac instance("Sinovac");
+        return &instance;
+    }
+    std::string getType() {
+        return "adenovirus";
+    }
+};
+
 
 // elvart kimenet:
 //Igen, pfizer es pfizer2 cime ugyanaz!
