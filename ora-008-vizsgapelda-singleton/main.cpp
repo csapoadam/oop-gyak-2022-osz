@@ -44,11 +44,12 @@ public:
 // elvart kimenet:
 //Igen, pfizer es pfizer2 cime ugyanaz!
 //Pfizer neve es tipusa : Pfizer, mRNA
+//Igen, sinovac es sinovac2 cime ugyanaz!
+//Sinovac neve es tipusa : Sinovac, adenovirus
 
 
 int main() {
     static_assert(std::is_abstract<Oltas>(), "Oltas-nak absztrakt osztalynak kell lennie!");
-
     Oltas* pfizer = Pfizer::GetInstance();
     Oltas* pfizer2 = Pfizer::GetInstance();
 
@@ -57,4 +58,13 @@ int main() {
     }
 
     std::cout << "Pfizer neve es tipusa: " << pfizer->getName() << ", " << pfizer->getType() << std::endl;
+
+    Oltas* sinovac = Sinovac::GetInstance();
+    Oltas* sinovac2 = Sinovac::GetInstance();
+
+    if (sinovac == sinovac2) {
+        std::cout << "Igen, sinovac es sinovac2 cime ugyanaz!" << std::endl;
+    }
+
+    std::cout << "Sinovac neve es tipusa: " << sinovac->getName() << ", " << sinovac->getType() << std::endl;
 }
