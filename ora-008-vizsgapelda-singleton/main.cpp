@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
 #include <type_traits>
 
 // A 2-es jegyert keszitse el az alabbi osztalyokat:
@@ -51,6 +53,33 @@ public:
     }
     std::string getType() {
         return "adenovirus";
+    }
+};
+
+class OltasiIgazolas {
+    std::vector<Oltas*> oltasok;
+public:
+    OltasiIgazolas(const std::vector<Oltas*>& oltasok) : oltasok(oltasok) {}
+    int getCount(Oltas* whichOltas) {
+        /*int count = 0;
+        for (Oltas* op : oltasok) {
+            if (op == whichOltas) {
+                count++;
+            }
+        }
+        return count;*/
+
+        // a fenti mukodik, de meg egyszerubb:
+        return std::count(oltasok.begin(), oltasok.end(), whichOltas);
+
+        // itt egy un. predicate fuggvenyt adunk meg, ez is jo, de
+        // itt feleslegesen bonyolult:
+        /*return std::count_if(
+            oltasok.begin(), oltasok.end(),
+            [whichOltas](Oltas* current) {
+                return current == whichOltas;
+            }
+        );*/
     }
 };
 
