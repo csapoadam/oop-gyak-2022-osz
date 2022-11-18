@@ -122,4 +122,18 @@ int main() {
     std::cout << "Masodik delinkvens ennyi Pfizer oltast kapott: " << oltasiig2.getCount(Pfizer::GetInstance()) << std::endl;
     std::cout << "Masodik delinkvens ennyi Sinovac oltast kapott: " << oltasiig2.getCount(Sinovac::GetInstance()) << std::endl;
 
+    std::vector<std::pair<Oltas*, int> > kovetelmenyek1 = { std::make_pair<Oltas*, int>(Pfizer::GetInstance(), 2) };
+    std::vector<std::pair<Oltas*, int> > kovetelmenyek2 = {
+        std::make_pair<Oltas*, int>(Pfizer::GetInstance(), 2),
+        std::make_pair<Oltas*, int>(Sinovac::GetInstance(), 2)
+    };
+
+    BeutazasiSzabalyozas ketPfizer(kovetelmenyek1);
+    BeutazasiSzabalyozas ketBarmi(kovetelmenyek2);
+
+    if (ketPfizer.isKaranten(&oltasiig1)) {
+        std::cout << "Onnek sajnos nincs 2 pfizere..." << std::endl;
+    } else {
+        std::cout << "Jojjon, baratunk!" << std::endl;
+    }
 }
