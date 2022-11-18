@@ -83,6 +83,9 @@ public:
     }
 };
 
+typedef std::pair<Oltas*, int> Kovetelmeny;
+typedef std::vector<Kovetelmeny> Kovetelmenyek;
+
 
 // elvart kimenet:
 //Igen, pfizer es pfizer2 cime ugyanaz!
@@ -122,10 +125,14 @@ int main() {
     std::cout << "Masodik delinkvens ennyi Pfizer oltast kapott: " << oltasiig2.getCount(Pfizer::GetInstance()) << std::endl;
     std::cout << "Masodik delinkvens ennyi Sinovac oltast kapott: " << oltasiig2.getCount(Sinovac::GetInstance()) << std::endl;
 
-    std::vector<std::pair<Oltas*, int> > kovetelmenyek1 = { std::make_pair<Oltas*, int>(Pfizer::GetInstance(), 2) };
-    std::vector<std::pair<Oltas*, int> > kovetelmenyek2 = {
-        std::make_pair<Oltas*, int>(Pfizer::GetInstance(), 2),
-        std::make_pair<Oltas*, int>(Sinovac::GetInstance(), 2)
+    Kovetelmenyek kovetelmenyek1 = {
+        std::make_pair<Oltas*, int>(
+            Pfizer::GetInstance(), 2
+        )
+    };
+    Kovetelmenyek kovetelmenyek2 = {
+        { Pfizer::GetInstance(), 2},
+        { Sinovac::GetInstance(), 2}
     };
 
     BeutazasiSzabalyozas ketPfizer(kovetelmenyek1);
