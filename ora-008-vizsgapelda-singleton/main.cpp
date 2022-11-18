@@ -81,4 +81,16 @@ int main() {
     }
 
     std::cout << "Sinovac neve es tipusa: " << sinovac->getName() << ", " << sinovac->getType() << std::endl;
+
+    // 4-es jegyert:
+    std::vector<Oltas*> oltasok1 = { Sinovac::GetInstance(), Sinovac::GetInstance(), Pfizer::GetInstance() };
+    std::vector<Oltas*> oltasok2 = { Pfizer::GetInstance(), Sinovac::GetInstance(), Pfizer::GetInstance() };
+
+    OltasiIgazolas oltasiig1(oltasok1);
+    OltasiIgazolas oltasiig2(oltasok2);
+
+    std::cout << "Elso delinkvens ennyi Pfizer oltast kapott: " << oltasiig1.getCount(Pfizer::GetInstance()) << std::endl;
+    std::cout << "Masodik delinkvens ennyi Pfizer oltast kapott: " << oltasiig2.getCount(Pfizer::GetInstance()) << std::endl;
+    std::cout << "Masodik delinkvens ennyi Sinovac oltast kapott: " << oltasiig2.getCount(Sinovac::GetInstance()) << std::endl;
+
 }
