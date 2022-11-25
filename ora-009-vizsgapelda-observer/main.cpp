@@ -11,6 +11,31 @@
 // metodusa str = "hun" eseten magyarul irja ki a homersekletet,
 // str = "eng" eseten pedig angolul.
 
+class Helyiseg {
+protected:
+	double homerseklet;
+public:
+	void setHomerseklet(double temp) { homerseklet = temp; }
+	virtual void printTemperature(std::string language) = 0;
+};
+
+class Szoba : public Helyiseg {
+	std::string nev;
+public:
+	Szoba(std::string nev) : nev(nev) {}
+	void printTemperature(std::string lang) {
+		if (lang == "hun") {
+			std::cout << "Homerseklet a " << nev;
+			std::cout << " szobaban: " << homerseklet;
+			std::cout << std::endl;
+		} else if (lang == "eng") {
+			std::cout << "Temperature in " << nev;
+			std::cout << " : " << homerseklet;
+			std::cout << std::endl;
+		}
+	}
+};
+
 int main() {
 	static_assert(
 		std::is_abstract<Helyiseg>(), "Helyiseg must be abstract"
