@@ -32,13 +32,29 @@ public:
 	}
 };
 
+enum class DeviceType {
+	Computer,
+	Laptop
+};
+
+// Keszitsen el egy DeviceFactory nevu osztalyt, melynek egyetlen
+// publikus statikus fv-e van:
+// Device* NewDevice(const std::string&)
+// szignaturval
+
 int main() {
 	static_assert(
 		std::is_abstract<Device>(),
 		"Device ought to be abstract."
 	);
-	Device* computer = new Computer("IBM Business");
-	Device* laptop = new Laptop("Asus TUF");
+	Device* computer =
+		DeviceFactory::NewDevice(DeviceType::Computer, "IBM Business");
+	Device* laptop =
+		DeviceFactory::NewDevice(DeviceType::Laptop, "Asus TUF");
+
 	computer->print(); // IBM Business gep vagyok
 	laptop->print(); // Asus TUF laptop vagyok
+
+	delete computer;
+	delete laptop;
 }
