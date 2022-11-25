@@ -11,6 +11,11 @@
 // metodusa str = "hun" eseten magyarul irja ki a homersekletet,
 // str = "eng" eseten pedig angolul.
 
+// Keszitse el a Tanterem osztalyt is, ami szinten egyfajta Helyiseg.
+// A Helyiseg osztalynak legyen egy setPara() metodusa is, ami a
+// paratartalmat beallitja.
+// printHumidity(std::string lang) pedig kiirja adott nyelven
+
 class Helyiseg {
 protected:
 	double homerseklet;
@@ -44,9 +49,21 @@ int main() {
 	Helyiseg* nappali = new Szoba("nappali");
 	Helyiseg* haloszoba = new Szoba("haloszoba");
 
+	Helyiseg* d104 = new Tanterem("D104", 50); // 50 ferohelyes, D104 nevu tanterem
+
 	nappali->setHomerseklet(21.5);
 	haloszoba->setHomerseklet(19.0);
 
+	nappali->setPara(40);
+	haloszoba->setPara(55);
+
 	nappali->printTemperature("eng"); // Temperature in nappali: 21.5
 	haloszoba->printTemperature("hun"); // Homerseklet a haloszoba szobaban: 19.0
+
+	nappali->printHumidity("eng"); // Humidity in nappali: 40 percent
+	haloszoba->printHumidity("hun"); // Paraszint a haloszoba szobaban: 55 szazalek
+
+	delete nappali;
+	delete haloszoba;
+	delete d104;
 }
