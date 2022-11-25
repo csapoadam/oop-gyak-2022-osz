@@ -25,10 +25,15 @@ public:
 };
 
 class Laptop : public Device {
+	std::string megjegyzes;
 public:
 	Laptop(const std::string& nev) : Device(nev) { }
 	void print() override {
-		std::cout << getName() << " laptop vagyok" << std::endl;
+		std::cout << getName() << " laptop vagyok (";
+		std::cout << megjegyzes << ")" << std::endl;
+	}
+	void extraMegjegyzesek(std::string megj) {
+		megjegyzes = megj;
 	}
 };
 
@@ -42,11 +47,30 @@ enum class DeviceType {
 // Device* NewDevice(const std::string&)
 // szignaturval
 
+class DeviceFactory {
+public:
+	static Device* NewDevice(
+		DeviceType type, const std::string& name
+	) {
+		if (type == DeviceType::Computer) {
+			return new Computer(name);
+		}
+		else if (type == DeviceType::Laptop) {
+			Laptop* laptop = new Laptop(name);
+			laptop->extraMegjegyzesek("Factory altal krealt laptop!");
+			return laptop;
+		}
+		std::cout << "Ilyen tipusu device nincs!!";
+		return nullptr;
+	}
+};
+
 int main() {
 	static_assert(
 		std::is_abstract<Device>(),
 		"Device ought to be abstract."
 	);
+
 	Device* computer =
 		DeviceFactory::NewDevice(DeviceType::Computer, "IBM Business");
 	Device* laptop =
