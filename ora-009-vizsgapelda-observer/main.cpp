@@ -13,15 +13,15 @@
 
 int main() {
 	static_assert(
-		std::is_abstract<Helyiseg>, "Helyiseg must be abstract"
+		std::is_abstract<Helyiseg>(), "Helyiseg must be abstract"
 	);
 
 	Helyiseg* nappali = new Szoba("nappali");
 	Helyiseg* haloszoba = new Szoba("haloszoba");
 
-	nappali.setHomerseklet(21.5);
-	haloszoba.setHomerseklet(19.0);
+	nappali->setHomerseklet(21.5);
+	haloszoba->setHomerseklet(19.0);
 
-	nappali.printTemperature("eng"); // Temperature in nappali: 21.5
-	haloszoba.printTemperature("hun"); // Homerseklet a haloszoba szobaban: 19.0
+	nappali->printTemperature("eng"); // Temperature in nappali: 21.5
+	haloszoba->printTemperature("hun"); // Homerseklet a haloszoba szobaban: 19.0
 }
