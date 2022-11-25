@@ -1,215 +1,107 @@
 #include <type_traits>
 #include <string>
 #include <iostream>
+#include <vector>
 
-// Keszitsen el egy Helyiseg nevu absztrakt osztalyt, melynek
-// setHomerseklet(double) metodusa beallitja a homersekletet
-// es printTemperature() metodusa egy sztringet var, de nincs
-// megvalositva
+template <typename T>
+class Observer {
+public:
+	virtual void notify(T val, std::string context) = 0;
+};
 
-// Ebbol szarmazzon a Szoba osztaly, melynek printTemperature(str)
-// metodusa str = "hun" eseten magyarul irja ki a homersekletet,
-// str = "eng" eseten pedig angolul.
+template <typename T>
+class Observable {
+	std::vector<Observer<T>*> subscribers;
+	std::string context;
+public:
+	Observable(const std::string& ctx) : context(ctx) {}
+	void set(T val) {
+		for (Observer<T>* obs : subscribers) {
+			obs->notify(val, context);
+		}
+	}
+	void subscribe(Observer<T>* obs) {
+		subscribers.push_back(obs);
+	}
+};
 
-// Keszitse el a Tanterem osztalyt is, ami szinten egyfajta Helyiseg.
-// A Helyiseg osztalynak legyen egy setPara() metodusa is, ami a
-// paratartalmat beallitja.
-// printHumidity(std::string lang) pedig kiirja adott nyelven
+class Observer_HumidityHun : public Observer<int> {
+public:
+	virtual void notify(int val, std::string context) {
+		std::cout << "Uj paratartalom a " << context << " helyisegben: " << val << " szazalek";
+		std::cout << std::endl;
+	}
+};
+
+class Observer_HumidityEng : public Observer<int> {
+public:
+	virtual void notify(int val, std::string context) {
+		std::cout << "New humidity in " << context << ": " << val << " percent";
+		std::cout << std::endl;
+	}
+};
+
+class Observer_TemperatureEng : public Observer<double> {
+public:
+	virtual void notify(double val, std::string context) {
+		std::cout << "New temperature in " << context << ": " << val << " degrees";
+		std::cout << std::endl;
+	}
+};
 
 class Helyiseg {
 protected:
-	double homerseklet;
-	int para;
+	Observable<double> obsable_Temp;
+	Observable<int> obsable_Humi;
 public:
-	void setHomerseklet(double temp) { homerseklet = temp; }
-	void setPara(int paratartalom) { para = paratartalom; }
-	virtual void printTemperature(std::string language) = 0;
-	virtual void printHumidity(std::string language) = 0;
+	Helyiseg(const std::string& name) : obsable_Temp(name), obsable_Humi(name) {}
+	void setTemperature(double temp) { obsable_Temp.set(temp); }
+	void setHumidity(int humi) { obsable_Humi.set(humi); }
+	void subscribeToTemperature(Observer<double>* obser) {
+		obsable_Temp.subscribe(obser);
+	}
+	void subscribeToHumidity(Observer<int>* obser) {
+		obsable_Humi.subscribe(obser);
+	}
+	
 };
 
 class Szoba : public Helyiseg {
-	std::string nev;
 public:
-	Szoba(std::string nev) : nev(nev) {}
-	void printTemperature(std::string lang) {
-		if (lang == "hun") {
-			std::cout << "Homerseklet a " << nev;
-			std::cout << " szobaban: " << homerseklet;
-			std::cout << std::endl;
-		} else if (lang == "eng") {
-			std::cout << "Temperature in " << nev;
-			std::cout << " : " << homerseklet;
-			std::cout << std::endl;
-		}
-	}
-	void printHumidity(std::string lang) {
-		if (lang == "hun") {
-			std::cout << "Paratartalom a " << nev;
-			std::cout << " szobaban: " << para;
-			std::cout << std::endl;
-		}
-		else if (lang == "eng") {
-			std::cout << "Humidity in " << nev;
-			std::cout << " : " << para;
-			std::cout << std::endl;
-		}
-	}
+	Szoba(std::string nev) : Helyiseg(nev) {}
 };
 
 class Tanterem : public Helyiseg {
-	std::string nev;
 	int ferohely;
 public:
-	Tanterem(std::string nev, int ferohely) : nev(nev), ferohely(ferohely) {}
-	void printTemperature(std::string lang) {
-		if (lang == "hun") {
-			std::cout << "Homerseklet a " << nev;
-			std::cout << " tanteremben: " << homerseklet;
-			std::cout << std::endl;
-		}
-		else if (lang == "eng") {
-			std::cout << "Temperature in " << nev;
-			std::cout << " : " << homerseklet;
-			std::cout << std::endl;
-		}
-	}
-	void printHumidity(std::string lang) {
-		if (lang == "hun") {
-			std::cout << "Paratartalom a " << nev;
-			std::cout << " tanteremben: " << para;
-			std::cout << std::endl;
-		}
-		else if (lang == "eng") {
-			std::cout << "Humidity in " << nev;
-			std::cout << " : " << para;
-			std::cout << std::endl;
-		}
-	}
-};
-
-#include <vector>
-
-class Observer {
-public:
-	virtual void notify(double val) = 0;
-};
-
-class Observable {
-	double value;
-	std::vector<Observer*> subscribers;
-public:
-	void set(double val) {
-		value = val;
-		for (Observer* obs : subscribers) {
-			obs->notify(val);
-		}
-	}
-	void subscribe(Observer* obs) {
-		subscribers.push_back(obs);
-	}
-
-};
-
-class ObserverHumidityHun : public Observer {
-public:
-	virtual void notify(double val) {
-		std::cout << "Uj paratartalom: " << val << " szazalek";
-		std::cout << std::endl;
-	}
-};
-
-class ObserverHumidityEng : public Observer {
-public:
-	virtual void notify(double val) {
-		std::cout << "New humidity: " << val << " percent";
-		std::cout << std::endl;
-	}
-};
-
-class ObserverTemperatureEng : public Observer {
-public:
-	virtual void notify(double val) {
-		std::cout << "Uj homerseklet: " << val << " fok";
-		std::cout << std::endl;
-	}
+	Tanterem(std::string nev, int ferohely) : Helyiseg(nev), ferohely(ferohely) {}
 };
 
 int main() {
+	Helyiseg* nappali = new Szoba("nappali");
+	Helyiseg* haloszoba = new Szoba("haloszoba");
+	Helyiseg* d104 = new Tanterem("D104", 50); // 50 ferohelyes, D104 nevu tanterem
 
-	// Observer minta:
-	// vannak Observable-ok... ilyen a homerseklet, paratartalom
-	// (de mondjuk lehet a Szoba, meg Tanterem is)
+	Observer_HumidityEng ob_Humi_eng;
+	Observer_HumidityHun ob_Humi_hun;
+	Observer_TemperatureEng ob_Temp_eng;
 
-	// vannak az Observerek, amik pedig ezek valtozasaira
-	// figyelnek...
+	nappali->subscribeToTemperature(&ob_Temp_eng);
+	nappali->subscribeToHumidity(&ob_Humi_eng);
+	haloszoba->subscribeToTemperature(&ob_Temp_eng);
+	haloszoba->subscribeToHumidity(&ob_Humi_hun);
+	d104->subscribeToTemperature(&ob_Temp_eng);
+	d104->subscribeToHumidity(&ob_Humi_hun);
 
-	// Kell egy ObservableTemperature, es ObservableHumidity osztaly
-	// minden Helyiseg egyben egy ObserverableTemperature es
-	// ObservableHumidity is egyben!
+	nappali->setTemperature(21.5);
+	haloszoba->setTemperature(19.0);
+	d104->setTemperature(22.1);
 
-	// Kell egy ObserverTemperature, es ObserverHumidity is
-	// amik ertesitest kapnak az uj ertekekrol. Ezek konkret tipusa
-	// lehet a HelyisegObserverEng, meg HelyisegObserverHun
-	// amik egyfajta ObserverTemperature es ObserverHumidity is
-	// egyben!
+	nappali->setHumidity(40);
+	haloszoba->setHumidity(55);
+	d104->setHumidity(52);
 
-	// Feladat:
-	// Keszitsen egy Observable osztalyt,
-	// void set(double) es void subscribe(Observer*)
-
-	// Keszitsen egy Observer osztalyt, melynek altipusai
-	// a ObserverTemperatureEng, ObserverHumidityEng es
-	// ObserverHumidityHun
-	// Observer osztalynak kell legyen egy notify() metodusa
-	// melyet meghiv az Observable.set()
-
-	Observable nappaliHomerseklet;
-	Observable nappaliParatartalom;
-
-	Observable haloszobaHomerseklet;
-	Observable haloszobaParatartalom;
-
-	static_assert(
-		std::is_abstract<Observer>(), "Observer must be abstract"
-		);
-
-	ObserverHumidityHun obsHumHun;
-	ObserverHumidityEng obsHumEng;
-	ObserverTemperatureEng obsTempEng;
-
-	nappaliHomerseklet.subscribe(&obsTempEng);
-	haloszobaParatartalom.subscribe(&obsHumHun);
-	haloszobaParatartalom.subscribe(&obsHumEng);
-
-	std::cout << "miutan mindent beallitottunk: " << std::endl;
-
-	nappaliHomerseklet.set(21.5);
-	nappaliParatartalom.set(40);
-	haloszobaHomerseklet.set(19.0);
-	haloszobaParatartalom.set(55);
-
-
-
-
-
-	//Helyiseg* nappali = new Szoba("nappali");
-	//Helyiseg* haloszoba = new Szoba("haloszoba");
-
-	//Helyiseg* d104 = new Tanterem("D104", 50); // 50 ferohelyes, D104 nevu tanterem
-
-	//nappali->setHomerseklet(21.5);
-	//haloszoba->setHomerseklet(19.0);
-
-	//nappali->setPara(40);
-	//haloszoba->setPara(55);
-
-	//nappali->printTemperature("eng"); // Temperature in nappali: 21.5
-	//haloszoba->printTemperature("hun"); // Homerseklet a haloszoba szobaban: 19.0
-
-	//nappali->printHumidity("eng"); // Humidity in nappali: 40 percent
-	//haloszoba->printHumidity("hun"); // Paraszint a haloszoba szobaban: 55 szazalek
-
-	//delete nappali;
-	//delete haloszoba;
-	//delete d104;
+	delete nappali;
+	delete haloszoba;
+	delete d104;
 }
