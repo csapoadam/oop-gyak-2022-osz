@@ -19,9 +19,12 @@
 class Helyiseg {
 protected:
 	double homerseklet;
+	int para;
 public:
 	void setHomerseklet(double temp) { homerseklet = temp; }
+	void setPara(int paratartalom) { para = paratartalom; }
 	virtual void printTemperature(std::string language) = 0;
+	virtual void printHumidity(std::string language) = 0;
 };
 
 class Szoba : public Helyiseg {
@@ -36,6 +39,49 @@ public:
 		} else if (lang == "eng") {
 			std::cout << "Temperature in " << nev;
 			std::cout << " : " << homerseklet;
+			std::cout << std::endl;
+		}
+	}
+	void printHumidity(std::string lang) {
+		if (lang == "hun") {
+			std::cout << "Paratartalom a " << nev;
+			std::cout << " szobaban: " << para;
+			std::cout << std::endl;
+		}
+		else if (lang == "eng") {
+			std::cout << "Humidity in " << nev;
+			std::cout << " : " << para;
+			std::cout << std::endl;
+		}
+	}
+};
+
+class Tanterem : public Helyiseg {
+	std::string nev;
+	int ferohely;
+public:
+	Tanterem(std::string nev, int ferohely) : nev(nev), ferohely(ferohely) {}
+	void printTemperature(std::string lang) {
+		if (lang == "hun") {
+			std::cout << "Homerseklet a " << nev;
+			std::cout << " tanteremben: " << homerseklet;
+			std::cout << std::endl;
+		}
+		else if (lang == "eng") {
+			std::cout << "Temperature in " << nev;
+			std::cout << " : " << homerseklet;
+			std::cout << std::endl;
+		}
+	}
+	void printHumidity(std::string lang) {
+		if (lang == "hun") {
+			std::cout << "Paratartalom a " << nev;
+			std::cout << " tanteremben: " << para;
+			std::cout << std::endl;
+		}
+		else if (lang == "eng") {
+			std::cout << "Humidity in " << nev;
+			std::cout << " : " << para;
 			std::cout << std::endl;
 		}
 	}
