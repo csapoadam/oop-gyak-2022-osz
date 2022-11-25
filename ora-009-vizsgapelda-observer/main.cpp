@@ -88,28 +88,79 @@ public:
 };
 
 int main() {
+
+	// Observer minta:
+	// vannak Observable-ok... ilyen a homerseklet, paratartalom
+	// (de mondjuk lehet a Szoba, meg Tanterem is)
+
+	// vannak az Observerek, amik pedig ezek valtozasaira
+	// figyelnek...
+
+	// Kell egy ObservableTemperature, es ObservableHumidity osztaly
+	// minden Helyiseg egyben egy ObserverableTemperature es
+	// ObservableHumidity is egyben!
+
+	// Kell egy ObserverTemperature, es ObserverHumidity is
+	// amik ertesitest kapnak az uj ertekekrol. Ezek konkret tipusa
+	// lehet a HelyisegObserverEng, meg HelyisegObserverHun
+	// amik egyfajta ObserverTemperature es ObserverHumidity is
+	// egyben!
+
+	// Feladat:
+	// Keszitsen egy Observable osztalyt,
+	// void set(double) es void subscribe(Observer*)
+
+	// Keszitsen egy Observer osztalyt, melynek altipusai
+	// a ObserverTemperatureEng, ObserverHumidityEng es
+	// ObserverHumidityHun
+	// Observer osztalynak kell legyen egy notify() metodusa
+	// melyet meghiv az Observable.set()
+
+	Observable nappaliHomerseklet;
+	Observable nappaliParatartalom;
+
+	Observable haloszobaHomerseklet;
+	Observable haloszobaParatartalom;
+
 	static_assert(
-		std::is_abstract<Helyiseg>(), "Helyiseg must be abstract"
-	);
+		std::is_abstract<Observer>(), "Observer must be abstract"
+		);
 
-	Helyiseg* nappali = new Szoba("nappali");
-	Helyiseg* haloszoba = new Szoba("haloszoba");
+	ObserverHumidityHun obsHumHun;
+	ObserverHumidityEng obsHumEng;
+	ObserverTemperatureEng obsTempEng;
 
-	Helyiseg* d104 = new Tanterem("D104", 50); // 50 ferohelyes, D104 nevu tanterem
+	nappaliHomerseklet.subscribe(&obsTempEng);
+	haloszobaParatartalom.subscribe(&obsHumHun);
+	haloszobaParatartalom.subscribe(&obsHumEng);
 
-	nappali->setHomerseklet(21.5);
-	haloszoba->setHomerseklet(19.0);
+	nappaliHomerseklet.set(21.5);
+	nappaliParatartalom.set(40);
+	haloszobaHomerseklet.set(19.0);
+	haloszobaParatartalom.set(55);
 
-	nappali->setPara(40);
-	haloszoba->setPara(55);
 
-	nappali->printTemperature("eng"); // Temperature in nappali: 21.5
-	haloszoba->printTemperature("hun"); // Homerseklet a haloszoba szobaban: 19.0
 
-	nappali->printHumidity("eng"); // Humidity in nappali: 40 percent
-	haloszoba->printHumidity("hun"); // Paraszint a haloszoba szobaban: 55 szazalek
 
-	delete nappali;
-	delete haloszoba;
-	delete d104;
+
+	//Helyiseg* nappali = new Szoba("nappali");
+	//Helyiseg* haloszoba = new Szoba("haloszoba");
+
+	//Helyiseg* d104 = new Tanterem("D104", 50); // 50 ferohelyes, D104 nevu tanterem
+
+	//nappali->setHomerseklet(21.5);
+	//haloszoba->setHomerseklet(19.0);
+
+	//nappali->setPara(40);
+	//haloszoba->setPara(55);
+
+	//nappali->printTemperature("eng"); // Temperature in nappali: 21.5
+	//haloszoba->printTemperature("hun"); // Homerseklet a haloszoba szobaban: 19.0
+
+	//nappali->printHumidity("eng"); // Humidity in nappali: 40 percent
+	//haloszoba->printHumidity("hun"); // Paraszint a haloszoba szobaban: 55 szazalek
+
+	//delete nappali;
+	//delete haloszoba;
+	//delete d104;
 }
