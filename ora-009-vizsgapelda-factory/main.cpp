@@ -8,6 +8,30 @@
 // Computer es Laptop egyfajta Device (szarmaznak belole) es
 // megvalositjak a print() metodust
 
+class Device {
+	std::string name;
+public:
+	Device(const std::string& nm) : name(nm) {}
+	virtual void print() = 0;
+	std::string getName() { return name; }
+};
+
+class Computer : public Device {
+public:
+	Computer(const std::string& nev) : Device(nev) { }
+	void print() override {
+		std::cout << getName() << " gep vagyok" << std::endl;
+	}
+};
+
+class Laptop : public Device {
+public:
+	Laptop(const std::string& nev) : Device(nev) { }
+	void print() override {
+		std::cout << getName() << " laptop vagyok" << std::endl;
+	}
+};
+
 int main() {
 	static_assert(
 		std::is_abstract<Device>(),
