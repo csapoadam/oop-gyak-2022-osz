@@ -87,6 +87,53 @@ public:
 	}
 };
 
+#include <vector>
+
+class Observer {
+public:
+	virtual void notify(double val) = 0;
+};
+
+class Observable {
+	double value;
+	std::vector<Observer*> subscribers;
+public:
+	void set(double val) {
+		value = val;
+		for (Observer* obs : subscribers) {
+			obs->notify(val);
+		}
+	}
+	void subscribe(Observer* obs) {
+		subscribers.push_back(obs);
+	}
+
+};
+
+class ObserverHumidityHun : public Observer {
+public:
+	virtual void notify(double val) {
+		std::cout << "Uj paratartalom: " << val << " szazalek";
+		std::cout << std::endl;
+	}
+};
+
+class ObserverHumidityEng : public Observer {
+public:
+	virtual void notify(double val) {
+		std::cout << "New humidity: " << val << " percent";
+		std::cout << std::endl;
+	}
+};
+
+class ObserverTemperatureEng : public Observer {
+public:
+	virtual void notify(double val) {
+		std::cout << "Uj homerseklet: " << val << " fok";
+		std::cout << std::endl;
+	}
+};
+
 int main() {
 
 	// Observer minta:
@@ -133,6 +180,8 @@ int main() {
 	nappaliHomerseklet.subscribe(&obsTempEng);
 	haloszobaParatartalom.subscribe(&obsHumHun);
 	haloszobaParatartalom.subscribe(&obsHumEng);
+
+	std::cout << "miutan mindent beallitottunk: " << std::endl;
 
 	nappaliHomerseklet.set(21.5);
 	nappaliParatartalom.set(40);
