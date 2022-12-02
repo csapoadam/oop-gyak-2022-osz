@@ -18,12 +18,18 @@ int main()
     static_assert(std::is_abstract<BlogEntry>(), "BlogEntry osztaly nem absztrakt!");
     BlogTextEntry entry1("Why is OOP useful?", 2022, 10, 3);
     BlogVideoEntry entry2("Demonstration1", 2022, 10, 5);
+
+    GuestAuthor bajorm("Bajor Miska", "Salesforce", "@bmisk");
+    BlogTextEntry entry3("History of OOP", 2022, 12, 1, &bajorm);
+
     myblog.addEntry(&entry1);
     myblog.addEntry(&entry2);
+    myblog.addEntry(&entry3);
     myblog.print(); // irja ki az alabbit:
     // Blog: Interesting Stuff on OOP
     // ---
     // 2022/10/3 - Why is OOP useful?
     // 2022/10/5 - Demonstration 1 - Play - Download
+    // 2022/12/1 - History of OOP (Bajor Miska, Salesforce, @bmisk)
 }
 
