@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <type_traits>
+#include "blog.h"
 
 // Keszitsen el egy Blog osztalyt, amelyet a blog cimevel lehet peldanyositani.
 // Keszitsen el egy absztrakt BlogEntry osztalyt, melynek void print() metodusa
