@@ -26,8 +26,7 @@ int main()
     myblog.addEntry(&entry2);
     myblog.addEntry(&entry3);
 
-    myblog.duplicateEntry(&entry1, 2022, 12, 2);
-
+    //myblog.duplicateEntry(&entry1, 2022, 12, 2);
 
     myblog.print(); // irja ki az alabbit:
     // Blog: Interesting Stuff on OOP
@@ -35,6 +34,5 @@ int main()
     // 2022/10/3 - Why is OOP useful?
     // 2022/10/5 - Demonstration 1 - Play - Download
     // 2022/12/1 - History of OOP (Bajor Miska, Salesforce, @bmisk)
-    // 2022/12/2 - Why is OOP useful? (duplicate)
 }
 

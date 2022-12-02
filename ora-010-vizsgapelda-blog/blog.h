@@ -21,6 +21,7 @@ protected:
 	int month;
 	int day;
 	GuestAuthor* optionalGuestAuthor;
+	std::vector<BlogEntry*> duplicates;
 public:
 	BlogEntry(const std::string& title, int yr, int mo, int dy) :
 		title(title), year(yr), month(mo), day(dy) {}
@@ -43,6 +44,25 @@ public:
 			bep->print();
 		}
 	}
+	//void duplicateEntry(BlogEntry* bep, int yr, int mo, int dy) {
+
+		// Ez ket okbol sem jo:
+		// - BlogEntry absztrakt osztaly, tehat nem peldanyosithato direktben
+		// - Nagyobbik gond: new-val a heapen hozzuk letre, de az osszes tobbi
+		// bejegyzes a stack-en van (csak ezt kene delete-elni!)
+
+		/*BlogEntry* newEntry = nullptr;
+		for (BlogEntry* entry : entries) {
+			if (bep == entry) {
+				std::string newTitle = bep->getTitle() + " (duplicate)";
+				GuestAuthor* optGuestAuth = bep->getGuestAuthor();
+				newEntry = new BlogEntry(newTitle, yr, mo, dy, optGuestAuth);
+			}
+		}
+		if (newEntry) {
+			entries.push_back(newEntry);
+		}*/
+	//}
 };
 
 class BlogTextEntry : public BlogEntry {
