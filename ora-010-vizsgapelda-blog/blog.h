@@ -3,7 +3,14 @@
 #include <vector>
 
 class BlogEntry {
+protected:
+	std::string title;
+	int year;
+	int month;
+	int day;
 public:
+	BlogEntry(const std::string& title, int yr, int mo, int dy) :
+		title(title), year(yr), month(mo), day(dy) {}
 	virtual void print() = 0;
 	virtual ~BlogEntry() {}
 };
@@ -24,13 +31,9 @@ public:
 };
 
 class BlogTextEntry : public BlogEntry {
-	std::string title;
-	int year;
-	int month;
-	int day;
 public:
 	BlogTextEntry(const std::string& title, int yr, int mo, int dy) :
-		title(title), year(yr), month(mo), day(dy) {}
+		BlogEntry(title, yr, mo, dy) {}
 	void print() override {
 		std::cout << year << "/" << month << "/" << day;
 		std::cout << " - " << title << std::endl;
@@ -38,13 +41,9 @@ public:
 };
 
 class BlogVideoEntry : public BlogEntry {
-	std::string title;
-	int year;
-	int month;
-	int day;
 public:
 	BlogVideoEntry(const std::string& title, int yr, int mo, int dy) :
-		title(title), year(yr), month(mo), day(dy) {}
+		BlogEntry(title, yr, mo, dy) {}
 	void print() override {
 		std::cout << year << "/" << month << "/" << day;
 		std::cout << " - " << title;
