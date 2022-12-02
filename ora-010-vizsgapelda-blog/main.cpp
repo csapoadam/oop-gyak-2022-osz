@@ -22,9 +22,12 @@ int main()
     GuestAuthor bajorm("Bajor Miska", "Salesforce", "@bmisk");
     BlogTextEntry entry3("History of OOP", 2022, 12, 1, &bajorm);
 
+    BlogAudioEntry entry4("Interview with Bjarne Stroustrup", 2022, 12, 2);
+
     myblog.addEntry(&entry1);
     myblog.addEntry(&entry2);
     myblog.addEntry(&entry3);
+    myblog.addEntry(&entry4);
 
     //myblog.duplicateEntry(&entry1, 2022, 12, 2);
 
@@ -34,5 +37,6 @@ int main()
     // 2022/10/3 - Why is OOP useful?
     // 2022/10/5 - Demonstration 1 - Play - Download
     // 2022/12/1 - History of OOP (Bajor Miska, Salesforce, @bmisk)
+    // 2022/12/2 - Interview with Bjarne Stroustrup - Listen
 }
 
